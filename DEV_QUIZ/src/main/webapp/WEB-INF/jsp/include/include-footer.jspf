@@ -1,0 +1,78 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<html>
+<head>
+<style>
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow-y: auto; 
+}
+</style>
+</head>
+<body>
+	<div class="inner">
+		<div class="blue-bg">
+			<div class="white-bg">
+				<ul class="menu">
+					<a>GAME MARKET</a>
+				</ul>
+
+				<div class="btn-group">
+					<a class="btn btn--white">
+						<div align="center">
+							<font size="3">CUSTOMER CENTER</font><br>
+							<font size="5">1234-5678</font><br>
+						</div>
+					</a>
+					<a class="btn btn--white">
+					(주) GAME MARKET 주소 : 서울특별시 강남구 테헤란로 000, 0층<br>
+					운영시간 AM 09:00 - PM 16:00<br> 점심시간 AM 11:30 - PM 01:00<br> (주말/공휴일 휴무)
+					</a>
+				</div>
+
+				<div class="info">
+					<span>사업자등록번호 OOO-OOO-OOOOO</span>
+					<span>(주)GAME MARKET 대표이사 OOO</span>
+					<span>고객센터 : 1234-5678 / FAX : 02-000-0000</span>
+					<span>통신판매업신고 : 제 2023-0000-00000호</span>
+				</div>
+
+				<div class="information">
+					<button onclick="openpopup('popup1')" class="openpop1()">이용약관</button>
+					<button onclick="openpopup('popup2')" class="openpop2()">개인정보처리방침</button>
+					<button onclick="goAdmin()" class="openpop2()">devquizOfiice</button>
+				</div>
+
+				<div id="popup1" class="popup">
+					<%@include file="popup1.jsp"%>
+				</div>
+				
+				<div id="popup2" class="popup">
+					<%@include file="popup2.jsp"%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		function openpopup(popupId) {
+			document.getElementById(popupId).style.display = 'block';
+		}
+		function closepopup(popupId) {
+			document.getElementById(popupId).style.display = 'none';
+		}
+		function goAdmin() {
+			location.href = "admin";
+		}
+	</script>
+</body>
+</html>
