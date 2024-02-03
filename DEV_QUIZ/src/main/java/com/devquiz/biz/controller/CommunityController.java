@@ -67,6 +67,38 @@ public class CommunityController {
 		return conditionMap;
 	}
 	
+	//해당 카테고리 게시글만 조회(전체 게시글 조회) : 오송민
+	@GetMapping("/get_community_list_by_cate")
+	public String paging(Model model,
+	 					@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+	 					@RequestParam(value = "cateIdx", required = false, defaultValue = "-1") int cateIdx)  {
+		
+	    List<CommunityVO> communityPagingList; 
+	    CommunityPageVO pageVO; //를 먼저 선언한다.
+
+	    if (cateIdx > 0) {
+	        // 카테고리가 지정된 경우
+	        communityPagingList = communityService.getCommunityPagingListByCate(cateIdx, page); //해당 카테고리+지정한 페이지 에 알맞은 게시글을 일정한 개수만큼 가져온다.
+	        pageVO = communityService.communityPagingParamByCate(cateIdx, page); //페이징 처리, communityDAO.communityBoardCountByCate(cateIdx)를 호출 -> 하단의 페이지 버튼에 이용
+	        
+	        String cateName = communityService.getSelCateName(cateIdx);
+	        model.addAttribute("selCateName", cateName);
+	        model.addAttribute("selCateIdx", cateIdx);
+	    } else {
+	        // 카테고리가 지정되지 않은 경우
+	        communityPagingList = communityService.getCommunityPagingList(page); //지정한 페이지 에 알맞은 게시글을 일정한 개수만큼 가져온다.
+	        pageVO = communityService.communityPagingParam(page); //페이징 처리, communityDAO.communityBoardCount()를 호출 -> 하단의 페이지 버튼에 이용
+	    }
+
+	    model.addAttribute("communityPagingList", communityPagingList); //해당 조건(카테고리+페이지)에 맞는 게시글 목록
+	    model.addAttribute("paging", pageVO);
+
+	    List<CategoryVO> communityCate = communityService.getCommunityCate();
+	    model.addAttribute("communityCate", communityCate);
+	    
+	    return "gaebal/community/getCommunityListByCate";
+	}
+
 	//게시글 상세 보기 : 오송민
 	@GetMapping("/get_community")
 	public String getCommunity(@RequestParam("boardIdx") int boardIdx
@@ -96,4 +128,6 @@ public class CommunityController {
 		return "gaebal/community/getCommunity";
 	
 	}
+	
+	
 }
