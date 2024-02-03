@@ -67,4 +67,33 @@ public class CommunityController {
 		return conditionMap;
 	}
 	
+	//게시글 상세 보기 : 오송민
+	@GetMapping("/get_community")
+	public String getCommunity(@RequestParam("boardIdx") int boardIdx
+			, @RequestParam(value = "page", required = false, defaultValue = "1") int page 
+			, @RequestParam(value = "cateIdx", required = false, defaultValue = "-1") int cateIdx 
+			, Model model, HttpSession session) { 
+		
+		CommunityVO vo = new CommunityVO();
+		vo.setBoardIdx(boardIdx); //@RequestParam으로 가져온 boardIdx를 vo에 set한다.
+		
+		CommunityVO community = communityService.getCommunity(vo); //boardIdx를 이용해 게시글을 가져온 뒤 community에 담는다.
+		model.addAttribute("community", community);
+		
+		List<CommentVO> commentList = communityService.getCommentList(vo); //boardIdx를 이용해 해당 게시글의 댓글 목록을 가져온다.
+		model.addAttribute("commentList", commentList);
+		
+		//왜 필요하지? 게시글 수정할 때 필요할 것으로 보임.. 다시 살펴보기
+		List<CategoryVO> communityCate = communityService.getCommunityCate(); //커뮤니티의 모든 카테고리 목록을 가져온 뒤
+		model.addAttribute("communityCate", communityCate); //model에 담는다.
+		
+		model.addAttribute("page", page); //현재 page를 model에 담는다.
+		
+		if (cateIdx > 0) { //해당 게시글의 카테고리(cateIdx)를 model에 담는다.
+			model.addAttribute("cateIdx", cateIdx);
+		}
+		
+		return "gaebal/community/getCommunity";
+	
+	}
 }
