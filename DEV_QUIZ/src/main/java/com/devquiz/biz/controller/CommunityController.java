@@ -67,6 +67,7 @@ public class CommunityController {
 		return conditionMap;
 	}
 	
+	
 	//해당 카테고리 게시글만 조회(전체 게시글 조회) : 오송민
 	@GetMapping("/get_community_list_by_cate")
 	public String paging(Model model,
@@ -98,6 +99,19 @@ public class CommunityController {
 	    
 	    return "gaebal/community/getCommunityListByCate";
 	}
+	
+	
+	//게시글 작성 페이지로 이동하기 : 오송민
+	@RequestMapping("/insert_community_page")
+	public String insertCommunityPage(@RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) { 
+	//게시글 작성 페이지로 이동 후 이전 페이지로 이동했을 때 원래 위치하던 페이지로 이동하기 위해 page 값을 받아온다.
+		
+		List<CategoryVO> communityCate = communityService.getCommunityCate(); //커뮤니티의 모든 카레고리 목록
+		model.addAttribute("communityCate", communityCate);
+		model.addAttribute("page", page); //원래 위치 페이지
+		return "gaebal/community/insertCommunityPage";
+	}
+
 
 	//게시글 상세 보기 : 오송민
 	@GetMapping("/get_community")
