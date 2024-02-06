@@ -264,6 +264,7 @@ public class CommunityController {
 		return "gaebal/community/updateCommunityPage";
 	}
 	
+	
 	//게시글 수정 내용 DB에 입력 : 오송민
 	@RequestMapping("/update_community")
 	public String updateCommunity(@ModelAttribute("community") CommunityVO communityVO, @RequestParam(value = "page", required = false, defaultValue = "1") int page 
@@ -339,6 +340,7 @@ public class CommunityController {
 		return "gaebal/community/getCommunity";
 	}
 	
+	
 	//DB에 저장된 이미지 삭제
 	@RequestMapping("/delete_community_img")
 	@ResponseBody
@@ -360,6 +362,45 @@ public class CommunityController {
 		
 		return "success"; //String "success"를 반환
 
+	}
+	
+	
+	//키워드 검색 게시글만 조회(페이징 처리)
+	@RequestMapping("/get_community_list_by_keyword")
+	public String getSearchCommunityList(CommunityVO vo, Model model,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+			@RequestParam(value = "searchCondition", required = false, defaultValue = "TITLE") String searchCondition,
+			@RequestParam(value = "searchKeyword", required = false, defaultValue = "") String searchKeyword) {
+		System.out.println(">>> 검색 키워드 게시글 조회");
+		System.out.println("검색 키워드 vo : " + vo);
+		
+		System.out.println("page for keyword = " + page);
+		
+		//키워드 검색 후 page는 필요 없는데 (당연히 1이니까)
+		List<CommunityVO> communityPagingList = communityService.getCommunityPagingListByKeyword(vo, page);
+		System.out.println("키워드 검색 결과 : " + communityPagingList);
+		
+		//페이징 처리를 위한 데이터
+		CommunityPageVO pageVO;
+		
+		if (searchCondition == "TITLE") {
+			pageVO = communityService.communityPagingParamByKeywordTitle(page, searchKeyword);	
+		} else {
+			pageVO = communityService.communityPagingParamByKeywordContent(page, searchKeyword);	
+		}
+		
+		System.out.println("pageVO : " + pageVO);
+		
+	    model.addAttribute("communityPagingList", communityPagingList);
+	    model.addAttribute("paging", pageVO); 
+
+	    List<CategoryVO> communityCate = communityService.getCommunityCate();
+	    model.addAttribute("communityCate", communityCate);
+	    
+	    model.addAttribute("searchCondition", searchCondition); //제목, 내용 - jsp에서 페이징 위해 필요
+	    model.addAttribute("searchKeyword", searchKeyword); //검색 키워드 - jsp에서 페이징 위해 필요 
+	    
+	    return "gaebal/community/getCommunityListByKeyword";
 	}
 	
 	

@@ -164,7 +164,7 @@
 			      		<td>${community.cateName }</td>
 						<td>
 							<a href="get_community?boardIdx=${community.boardIdx }&page=${paging.page }" class="aBlack">${community.title }&nbsp;</a>
-							<!-- 구현 안되면 삭제 -->
+							<!-- 키워드 검색 후 page는 필요 -->
 							<c:if test="${community.boardOri != null}"><i class="bi bi-card-image"></i></c:if>
 						</td>
 						<td>${community.nickname }</td>
