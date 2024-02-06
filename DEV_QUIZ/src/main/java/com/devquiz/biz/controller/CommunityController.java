@@ -234,4 +234,35 @@ public class CommunityController {
 	}
 	
 	
+	//게시글 수정 페이지로 이동하기 : 오송민
+	@RequestMapping("/update_community_page")
+	public String updateCommunityPage(@RequestParam(value = "page", required = false, defaultValue = "1") int page
+			, @RequestParam(value = "cateIdx", required = false, defaultValue = "-1") int cateIdx
+			, CommunityVO vo, Model model) {
+		System.out.println(">>>게시글 수정 페이지로 이동하기");
+		System.out.println("vo : " + vo);
+		
+		CommunityVO community = communityService.getCommunity(vo);
+		System.out.println("community : " + community);
+		
+		String contentOri = community.getContent(); //DB에 저장된 Content를 가져오고
+		String contentEdit = contentOri.replace("<br>", "\n"); //<br>을 \n으로 치환한 후
+		community.setContent(contentEdit); //치환한 Content를 community에 담는다.
+		
+		model.addAttribute("community", community); //Model 객체 사용해서 View로 데이터 전달
+				
+		List<CategoryVO> communityCate = communityService.getCommunityCate();
+		model.addAttribute("communityCate", communityCate);
+		
+		model.addAttribute("page", page);
+		
+		if (cateIdx > 0) {
+			model.addAttribute("cateIdx", cateIdx);
+
+		}
+		
+		return "gaebal/community/updateCommunityPage";
+	}
+	
+	
 }
