@@ -60,4 +60,24 @@ public class BookmarkController {
 		return conditionMap;
 	}
 	
+	
+	//즐겨찾기(북마크) 여부 확인
+	@RequestMapping("/get_bookmark_status")
+	@ResponseBody
+	public String getBookmarkStatus(@RequestParam("selCateIdx") String selCateIdx, BookmarkVO vo, HttpSession session) {
+		MemberVO loginMember = (MemberVO) session.getAttribute("loginMember");
+		
+		vo.setMemberIdx(loginMember.getMemberIdx());
+		vo.setCateIdx(Integer.parseInt(selCateIdx));
+		
+		System.out.println(">>> 북마크 조회"); 
+		System.out.println("북마크 조회 전 vo : " + vo);
+		
+		int intValue = bookmarkService.getBookmarkStatus(vo);
+		String result = "" + intValue;
+		
+		System.out.println("북마크 조회 후 : " + vo + ", 북마크 result : " + result);
+		
+		return result; //북마크 된 상태이면 1, 북마크 되지 않은 상태이면 0를 반환
+	}
 }
