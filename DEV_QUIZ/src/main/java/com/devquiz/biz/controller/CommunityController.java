@@ -264,5 +264,80 @@ public class CommunityController {
 		return "gaebal/community/updateCommunityPage";
 	}
 	
+	//게시글 수정 내용 DB에 입력 : 오송민
+	@RequestMapping("/update_community")
+	public String updateCommunity(@ModelAttribute("community") CommunityVO communityVO, @RequestParam(value = "page", required = false, defaultValue = "1") int page 
+			, @RequestParam(value = "cateIdx", required = false, defaultValue = "-1") int cateIdx
+			, Model model, HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException {
+		System.out.println("communityVO : " + communityVO);
+		
+		//uploadFile은 MultipartFile 객체로서 클라이언트가 요청한 파일(getUploadFile())이 저장되어 있다.
+		MultipartFile uploadFile = communityVO.getUploadFile(); 
+		System.out.println("> uploadFile : " + uploadFile);
+		
+		String filename = null;
+		System.out.println("filename : " + filename);
+		
+		if (uploadFile != null && !uploadFile.isEmpty()) {
+			// 업로드된 이미지 파일의 원본 파일명
+			filename = uploadFile.getOriginalFilename();
+			System.out.println("::: 원본파일명 : " + filename);
+			
+			if (filename != null && !filename.isEmpty()) {
+				communityVO.setBoardOri(filename);
+			} else {
+				// 파일명이 없는 경우에 대한 처리
+				communityVO.setBoardOri("UnknownFilename");
+			}
+		}
+		
+		if (uploadFile == null) {
+			System.out.println("::: uploadFile 파라미터가 전달되지 않은 경우");
+			
+		} else if (uploadFile.isEmpty()) {
+			System.out.println("::: 전달받은 파일 데이터가 없는 경우");
+		} else { // 업로드 파일이 존재하는 경우
+			System.out.println("uploadFile.isEmpty() : " + uploadFile.isEmpty());
+			
+			UUID uuid = UUID.randomUUID();
+		
+			String savedFilename = uuid + "_" + uploadFile.getOriginalFilename();
+			System.out.println("::: 저장파일명 : " + savedFilename);
+			
+			// 물리적 파일 복사
+			String destPathFile = "C:/MyStudy/temp/" + savedFilename;
+			uploadFile.transferTo(new File(destPathFile));
+			//MultipartFile 객체의 transferTo() 메서드를 호출하여 업로드된 파일을 특정 경로에 복사한다.
+			//업로드된 파일이 복사될 목적지를 나타내는 File 객체를 생성한다.
+			//즉, 업로드된 파일을 서버에 저장하고 그 파일의 경로를 CommunuityVO 객체에 설정하여 필요할 때 사용할 수 있도록 한다.
+			
+			// 원본 파일명을 communityVO에 설정
+			communityVO.setBoardOri(filename);
+			
+			// 저장 파일명을 communityVO에 설정
+			communityVO.setBoardFile(savedFilename);
+			
+		}
+		
+		//카테고리 변경할 경우
+		String selCateName = communityService.getSelCateName(communityVO.getCateIdx());
+		model.addAttribute("selCateName", selCateName);
+		
+		communityService.updateCommunity(communityVO);
+		model.addAttribute("community", communityVO);
+		
+		List<CategoryVO> communityCate = communityService.getCommunityCate();
+		model.addAttribute("communityCate", communityCate);
+		
+		model.addAttribute("page", page);
+		
+// 카테고리 변경 후 이전 page와 cateIdx을 저장하는 것은 의미 없음  		
+//			if (cateIdx > 0) {
+//				model.addAttribute("cateIdx", cateIdx);
+//			}
+		
+		return "gaebal/community/getCommunity";
+	}
+	
 	
 }
