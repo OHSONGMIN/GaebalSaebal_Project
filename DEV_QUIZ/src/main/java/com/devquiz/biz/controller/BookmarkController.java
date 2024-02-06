@@ -116,4 +116,28 @@ public class BookmarkController {
 		
 		return "success";	
 	}
+	
+	
+	//즐겨찾기 카테고리 게시글만 조회 : 오송민
+	@GetMapping("/get_community_list_by_bookmark")
+	public String paging(Model model,
+	 					@RequestParam(value = "page", required = false, defaultValue = "1") int page, @RequestParam(value = "memberIdx", required = false) Integer memberIdx)  {
+		System.out.println("page = " + page);
+		
+	    List<CommunityVO> communityPagingList; //페이징 된 즐겨찾기 게시글 목록
+	    CommunityPageVO pageVO; //페이징 처리를 위한 데이터(하단의 페이지 버튼)
+
+        System.out.println("page for bookmark = " + page);
+        communityPagingList = bookmarkService.getCommunityPagingListByBookmark(memberIdx, page);
+        pageVO = bookmarkService.communityPagingParamByBookmark(memberIdx, page);
+
+	    model.addAttribute("communityPagingList", communityPagingList);
+	    model.addAttribute("paging", pageVO);
+	    
+	    List<CategoryVO> communityCate = communityService.getCommunityCate();
+	    model.addAttribute("communityCate", communityCate);
+	    
+	    return "gaebal/community/getCommunityListByBookmark";
+	}
+	
 }
