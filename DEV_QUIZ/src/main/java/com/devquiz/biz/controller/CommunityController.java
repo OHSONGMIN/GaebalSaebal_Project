@@ -437,8 +437,24 @@ public class CommunityController {
 		
 		communityService.deleteComment(vo);
 		
-		return "success"; //String "success"를 반환
+		return "success"; //String "success"를 반환 - getCommunity.jsp에서 ajax로 이용
 	}
 	
+	
+	//댓글 수정 : 오송민
+	@RequestMapping("/update_comment")
+	@ResponseBody
+	public String updateComment(@RequestParam("commIdx") int commIdx, @RequestParam("commContent") String commContent, CommentVO vo) {
+		System.out.println(">>> 댓글 수정");
+		
+		vo.setCommIdx(commIdx);
+		vo.setCommContent(commContent);
+		
+		communityService.updateComment(vo);
+		
+		System.out.println(">>> 댓글 수정 완료");
+		
+		return "success"; //String "success"를 반환 - getCommunity.jsp에서 ajax로 이용
+	}
 	
 }
