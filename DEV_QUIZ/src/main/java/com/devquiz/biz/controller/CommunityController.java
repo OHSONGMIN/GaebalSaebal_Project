@@ -208,5 +208,30 @@ public class CommunityController {
 	
 	}
 	
+	// 게시글 삭제 : 오송민
+	@RequestMapping("/delete_community")
+	public String deleteCommunity(@RequestParam(value = "page", required = false, defaultValue = "1") int page
+			, @RequestParam(value = "cateIdx", required = false, defaultValue = "-1") int cateIdx
+			, @RequestParam(value = "boardIdx") int boardIdx
+			, CommunityVO vo, SessionStatus sessionStatus, Model model) {
+		System.out.println(">>> 게시글 삭제");
+		System.out.println("vo : " + vo);
+		
+		vo.setBoardIdx(boardIdx);
+		
+		communityService.deleteCommunity(vo);
+		
+		List<CategoryVO> communityCate = communityService.getCommunityCate();
+		model.addAttribute("communityCate", communityCate);
+		
+		model.addAttribute("page", page); //삭제 후 이전 페이지로 돌아가기 위해
+		
+		if (cateIdx > 0) { //삭제 후 해당 카테고리로 돌아가기 위해
+			model.addAttribute("cateIdx", cateIdx);
+		}
+		
+		return "redirect:get_community_list_by_cate";
+	}
+	
 	
 }
