@@ -113,6 +113,71 @@ public class CommunityController {
 	}
 
 
+	//게시글 DB에 등록 : 오송민
+	@RequestMapping("/insert_community")
+	public String insertCommunity(CommunityVO communityVO, HttpServletRequest request, HttpSession session
+			, RedirectAttributes redirectAttributes, Model model) throws IllegalStateException, IOException {
+		
+		//session에 저장된 loginMember를 가져온다.
+		MemberVO loginMember = (MemberVO) session.getAttribute("loginMember");
+		communityVO.setMemberIdx(loginMember.getMemberIdx());
+		
+		System.out.println(">>> 게시글 입력");
+		System.out.println("게시글 입력 전 communityVO : " + communityVO);
+		
+		MultipartFile uploadFile = communityVO.getUploadFile(); //게시글 작성 페이지에서 넘어온 uploadFile
+		//System.out.println("> uploadFile : " + uploadFile);
+		
+		String filename = null;
+		//System.out.println("filename : " + filename);
+		
+		if (uploadFile != null && !uploadFile.isEmpty()) {
+			// 업로드된 이미지 파일의 원본 파일명
+			filename = uploadFile.getOriginalFilename(); //원본 파일명
+			System.out.println("::: 원본파일명 : " + filename);
+			
+			if (filename != null && !filename.isEmpty()) {
+				communityVO.setBoardOri(filename);
+			} else {
+				// 파일명이 없는 경우에 대한 처리
+				communityVO.setBoardOri("UnknownFilename");
+			}
+		}
+		
+		if (uploadFile == null) {
+			System.out.println("::: uploadFile 파라미터가 전달되지 않은 경우");
+		} else if (uploadFile.isEmpty()) {
+			System.out.println("::: 전달받은 파일 데이터가 없는 경우");
+		} else { // 업로드 파일이 존재하는 경우
+			System.out.println("uploadFile.isEmpty() : " + uploadFile.isEmpty());
+			
+			UUID uuid = UUID.randomUUID(); //파일명이 중복되지 않도록 UUID 사용
+		
+			String savedFilename = uuid + "_" + uploadFile.getOriginalFilename();
+			System.out.println("::: 저장파일명 : " + savedFilename);
+			
+			// 물리적 파일 복사
+			String destPathFile = "C:/MyStudy/temp/" + savedFilename;
+			uploadFile.transferTo(new File(destPathFile));
+
+			// 원본 파일명을 communityVO에 설정
+			communityVO.setBoardOri(filename);
+			
+			// 저장 파일명을 communityVO에 설정
+			communityVO.setBoardFile(savedFilename);
+			
+		}
+
+		communityService.insertCommunity(communityVO);
+		System.out.println("글 작성 후 vo(boardIdx가 없음) : " + communityVO);
+		
+		//return "gaebal/community/getCommunity";
+		return "redirect:get_community_list_by_cate";
+		//새로고침 등을 통해 같은 요청을 반복해서 보내는 경우, redirect를 사용하면 데이터 중복을 방지할 수 있다.
+		//redirect를 사용하면 새로고침을 해도 같은 데이터가 제출되지 않는다.
+	}
+		
+		
 	//게시글 상세 보기 : 오송민
 	@GetMapping("/get_community")
 	public String getCommunity(@RequestParam("boardIdx") int boardIdx
