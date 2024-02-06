@@ -404,4 +404,24 @@ public class CommunityController {
 	}
 	
 	
+	//댓글 등록(DB에 입력) : 오송민
+	@RequestMapping("/insert_comment")
+	public String insertComment(@RequestParam(value = "page", required = false, defaultValue = "1") int page
+			, CommentVO vo, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
+		MemberVO loginMember = (MemberVO) session.getAttribute("loginMember");
+
+		vo.setMemberIdx(loginMember.getMemberIdx()); //session의 loginMember를 통해서 getMemberIdx
+		
+		System.out.println(">>> 댓글 등록");
+		System.out.println("댓글 등록 전 vo : " + vo);
+		
+		communityService.insertComment(vo);
+		
+		redirectAttributes.addAttribute("page", page);
+		redirectAttributes.addAttribute("boardIdx", vo.getBoardIdx());
+		
+		return "redirect:get_community"; //새로고침 했을 때 같은 데이터가 재입력되지 않도록 redirect한다.
+	}
+	
+	
 }
