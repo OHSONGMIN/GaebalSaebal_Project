@@ -424,4 +424,21 @@ public class CommunityController {
 	}
 	
 	
+	//댓글 삭제 : 오송민
+	@RequestMapping("/delete_comment")
+	@ResponseBody
+	//public String deleteComment(CommentVO vo, RedirectAttributes redirectAttributes) {
+	public String deleteComment(CommentVO vo, @RequestParam("commIdx") int commIdx) {
+		System.out.println(">>> 댓글 삭제");
+		
+		vo.setCommIdx(commIdx);
+		
+		System.out.println("vo : " + vo);
+		
+		communityService.deleteComment(vo);
+		
+		return "success"; //String "success"를 반환
+	}
+	
+	
 }
