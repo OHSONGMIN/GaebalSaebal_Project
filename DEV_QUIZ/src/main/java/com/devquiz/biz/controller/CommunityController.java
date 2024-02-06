@@ -339,5 +339,28 @@ public class CommunityController {
 		return "gaebal/community/getCommunity";
 	}
 	
+	//DB에 저장된 이미지 삭제
+	@RequestMapping("/delete_community_img")
+	@ResponseBody
+	public String deleteCommunityImg(@RequestParam("boardIdx") int boardIdx, Model model) {
+		System.out.println(">>> 이미지 삭제");
+
+		System.out.println("boardIdx : " + boardIdx);
+		
+		communityService.deleteCommunityImg(boardIdx); //BOARD_ORI(원본 파일명) = NULL, BOARD_FILE(저장 파일명) = NULL
+		
+		CommunityVO vo = new CommunityVO();
+		vo.setBoardIdx(boardIdx);
+		
+		System.out.println("vo(boardIdx만 있음) : " + vo);
+		
+		//boardIdx만 있는 vo를 통해 img가 삭제된 게시글을 getCommunity 한다.
+		CommunityVO community = communityService.getCommunity(vo);
+		model.addAttribute("community", community);
+		
+		return "success"; //String "success"를 반환
+
+	}
+	
 	
 }
