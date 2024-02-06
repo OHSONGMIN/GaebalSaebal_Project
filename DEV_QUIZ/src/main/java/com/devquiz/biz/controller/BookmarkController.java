@@ -98,4 +98,22 @@ public class BookmarkController {
 		
 		return "success"; //String "success"를 반환
 	}
+	
+	
+	//즐겨찾기(북마크) 삭제
+	@RequestMapping("/delete_bookmark") //RedirectAttributes 필요없는지 확인하기!!
+	@ResponseBody
+	public String deleteBookmark(@RequestParam("selCateIdx") String selCateIdx, BookmarkVO vo, HttpSession session, RedirectAttributes redirectAttributes) { 
+		MemberVO loginMember = (MemberVO) session.getAttribute("loginMember");
+		
+		vo.setMemberIdx(loginMember.getMemberIdx());
+		vo.setCateIdx(Integer.parseInt(selCateIdx));
+
+		System.out.println(">>> 북마크 삭제");
+		System.out.println("북마크 삭제 전 vo : " + vo);
+		
+		bookmarkService.deleteBookmark(vo); //memberIdx, selCateIdx 전달
+		
+		return "success";	
+	}
 }
