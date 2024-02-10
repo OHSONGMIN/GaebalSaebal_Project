@@ -100,6 +100,11 @@ public class CommunityServiceImpl implements CommunityService{
         return vo;
 	}
 	
+	@Override //커뮤니티 카테고리 조회
+	public List<CategoryVO> getCommunityCate() {
+		return communityDAO.getCommunityCate();
+	}
+	
 	@Override //해당 카테고리 게시글만 조회(페이징 처리) 
 	public List<CommunityVO> getCommunityPagingListByCate(int cateIdx, int page) {
 		int pageStart = (page - 1) * pageLimit;
