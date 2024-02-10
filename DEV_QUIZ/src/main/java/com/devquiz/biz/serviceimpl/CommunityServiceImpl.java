@@ -238,4 +238,9 @@ public class CommunityServiceImpl implements CommunityService{
 		communityDAO.insertComment(vo);
 	}
 	
+	@Override //댓글 조회
+	public List<CommentVO> getCommentList(CommunityVO vo) {
+		return communityDAO.getCommentList(vo);
+	}
+	
 }
