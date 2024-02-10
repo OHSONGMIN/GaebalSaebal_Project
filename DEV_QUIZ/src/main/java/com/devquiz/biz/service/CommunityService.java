@@ -24,7 +24,7 @@ public interface CommunityService {
 	List<CommunityVO> getCommunityPagingListByCate(int cateIdx, int page); //해당 카테고리 게시글만 조회
 	CommunityPageVO communityPagingParam(int page);
 	CommunityPageVO communityPagingParamByCate(int cateIdx, int page);
-	List<CategoryVO> getCommunityCate();
+	//List<CategoryVO> getCommunityCate();
 	String getSelCateName(int cateIdx);
 	void deleteCommunityImg(int boardIdx);
 	List<CommunityVO> getHotCommunityList();
