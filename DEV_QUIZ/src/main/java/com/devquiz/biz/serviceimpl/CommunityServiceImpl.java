@@ -39,4 +39,9 @@ public class CommunityServiceImpl implements CommunityService{
 		communityDAO.deleteCommunity(vo);
 	}
 	
+	@Override //게시글 수정
+	public void updateCommunity(CommunityVO vo) {
+		communityDAO.updateCommunity(vo);
+	}
+	
 }
