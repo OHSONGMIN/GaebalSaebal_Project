@@ -192,7 +192,7 @@
 				<td colspan="3" style="height: 300px;">
 					<div class = "communityUploadImg">
 						<c:if test="${not empty community.boardFile}">
-		    				<img src="${pageContext.request.contextPath }/resources/img_product/${community.boardFile}" alt="">
+		    				<img src="${pageContext.request.contextPath }/resources/img_product/${community.boardFile}" alt="${community.boardOri }">
 						</c:if>
 					</div><br>
 					${community.content }
