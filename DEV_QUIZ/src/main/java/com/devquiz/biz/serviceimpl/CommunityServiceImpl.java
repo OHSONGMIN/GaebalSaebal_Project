@@ -253,4 +253,9 @@ public class CommunityServiceImpl implements CommunityService{
 		communityDAO.updateComment(vo);
 	}
 	
+	@Override //selCateIdx에 맞는 cateName 가져오기
+	public String getSelCateName(int cateIdx) {
+		return communityDAO.getSelCateName(cateIdx);
+	}
+	
 }
