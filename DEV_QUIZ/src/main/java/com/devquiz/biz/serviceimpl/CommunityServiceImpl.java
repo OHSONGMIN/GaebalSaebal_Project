@@ -233,4 +233,9 @@ public class CommunityServiceImpl implements CommunityService{
         return vo;
 	}
 	
+	@Override //댓글 등록
+	public void insertComment(CommentVO vo) {
+		communityDAO.insertComment(vo);
+	}
+	
 }
