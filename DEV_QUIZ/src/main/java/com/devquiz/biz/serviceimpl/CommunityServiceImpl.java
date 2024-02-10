@@ -22,4 +22,9 @@ public class CommunityServiceImpl implements CommunityService{
 	public CommunityServiceImpl() {
 		System.out.println(">> CommunityServiceImpl() 객체 생성");
 	}
+	
+	@Override //게시글 작성
+	public void insertCommunity(CommunityVO vo) {
+		communityDAO.insertCommunity(vo);
+	}
 }
