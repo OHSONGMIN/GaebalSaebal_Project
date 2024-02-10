@@ -34,5 +34,9 @@ public class CommunityServiceImpl implements CommunityService{
 		return communityDAO.getCommunity(vo);
 	}
 	
+	@Override //게시글 삭제
+	public void deleteCommunity(CommunityVO vo) {
+		communityDAO.deleteCommunity(vo);
+	}
 	
 }
