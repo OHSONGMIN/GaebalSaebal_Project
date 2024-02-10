@@ -248,5 +248,9 @@ public class CommunityServiceImpl implements CommunityService{
 		communityDAO.deleteComment(vo);
 	}
 
+	@Override //댓글 수정
+	public void updateComment(CommentVO vo) {
+		communityDAO.updateComment(vo);
+	}
 	
 }
