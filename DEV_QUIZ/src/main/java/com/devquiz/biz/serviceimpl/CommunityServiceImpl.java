@@ -147,4 +147,18 @@ public class CommunityServiceImpl implements CommunityService{
         return vo;
 	}
 	
+	@Override //키워드 검색 게시글 조회(페이징 처리)
+	public List<CommunityVO> getCommunityPagingListByKeyword(CommunityVO vo, int page) {
+		int pageStart = (page - 1) * pageLimit;
+
+	    Map<String, Object> pagingParams = new HashMap();
+	    pagingParams.put("start", pageStart);
+	    pagingParams.put("limit", pageLimit);
+	    pagingParams.put("searchCondition", vo.getSearchCondition());
+	    pagingParams.put("searchKeyword", vo.getSearchKeyword());
+	    
+		List<CommunityVO> communityPagingList = communityDAO.getCommunityPagingListByKeyword(pagingParams);
+		return communityPagingList;
+	}
+	
 }
