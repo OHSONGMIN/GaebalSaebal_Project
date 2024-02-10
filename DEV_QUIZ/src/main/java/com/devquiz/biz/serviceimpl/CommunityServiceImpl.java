@@ -27,4 +27,12 @@ public class CommunityServiceImpl implements CommunityService{
 	public void insertCommunity(CommunityVO vo) {
 		communityDAO.insertCommunity(vo);
 	}
+	
+	@Override //게시글 상세
+	public CommunityVO getCommunity(CommunityVO vo) {
+		communityDAO.increaseHit(vo); //게시글 상세 보기-> 조회수 1 증가
+		return communityDAO.getCommunity(vo);
+	}
+	
+	
 }
