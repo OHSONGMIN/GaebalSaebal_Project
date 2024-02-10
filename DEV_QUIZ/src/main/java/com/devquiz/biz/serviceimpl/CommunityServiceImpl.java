@@ -47,4 +47,21 @@ public class CommunityServiceImpl implements CommunityService{
 	int pageLimit = 10; // 한 페이지당 보여줄 게시글 개수
 	int blockLimit = 5; // 하단에 보여줄 한 블록당 페이지 개수
 	
+	@Override //전체 게시글 조회(페이징 처리)
+	public List<CommunityVO> getCommunityPagingList(int page) {
+		/*
+		한 페이지당 보여지는 글 갯수 10
+		 	1page => pageStart 0
+		 	2page => pageStart 10
+		 	3page => pageStart 20
+		*/
+		//해당 페이지의 start 게시글 번호
+		int pageStart = (page - 1) * pageLimit;
+		Map<String, Integer> pagingParams = new HashMap();
+		pagingParams.put("start", pageStart);
+		pagingParams.put("limit", pageLimit);
+		List<CommunityVO> communityPagingList = communityDAO.getCommunityPagingList(pagingParams);
+		
+		return communityPagingList;
+	}
 }
