@@ -64,4 +64,40 @@ public class CommunityServiceImpl implements CommunityService{
 		
 		return communityPagingList;
 	}
+	
+	@Override //페이징 처리
+	public CommunityPageVO communityPagingParam(int page) {
+		// 전체 글 갯수 조회
+        int boardCount = communityDAO.communityBoardCount();
+        
+        // 전체 페이지 갯수 계산(33/10=3.3 -> 4)
+        int maxPage = (int) (Math.ceil((double) boardCount / pageLimit));
+        
+        // 시작 페이지 값 계산(1, 6, 11, 16, ~~~~)
+        int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+        
+        // 끝 페이지 값 계산(5, 10, 15, 20, ~~~~)
+        int endPage = startPage + blockLimit - 1;
+        if (endPage > maxPage) {
+            endPage = maxPage;
+        }
+        
+        // 이전 블록의 시작 페이지
+        int blockPreStartPage = (((int)(Math.ceil((double) page / blockLimit))) - 2) * blockLimit + 1;
+        
+        // 다음 블록의 시작 페이지
+        int blockNextStartPage = ((int)(Math.ceil((double) page / blockLimit))) * blockLimit + 1;
+        		
+        CommunityPageVO vo = new CommunityPageVO();
+        vo.setPage(page);
+        vo.setMaxPage(maxPage);
+        vo.setStartPage(startPage);
+        vo.setEndPage(endPage);
+        vo.setBlockLimit(blockLimit);
+        vo.setBlockPreStartPage(blockPreStartPage);
+        vo.setBlockNextStartPage(blockNextStartPage);
+        
+        return vo;
+	}
+	
 }
