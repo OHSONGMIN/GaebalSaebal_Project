@@ -263,4 +263,9 @@ public class CommunityServiceImpl implements CommunityService{
 		communityDAO.deleteCommunityImg(boardIdx);
 	}
 	
+	@Override //조회수 top10 게시글 가져오기
+	public List<CommunityVO> getHotCommunityList() {
+		List<CommunityVO> hotCommunityList = communityDAO.getHotCommunityList();
+		return hotCommunityList;
+	}
 }
