@@ -44,4 +44,7 @@ public class CommunityServiceImpl implements CommunityService{
 		communityDAO.updateCommunity(vo);
 	}
 	
+	int pageLimit = 10; // 한 페이지당 보여줄 게시글 개수
+	int blockLimit = 5; // 하단에 보여줄 한 블록당 페이지 개수
+	
 }
