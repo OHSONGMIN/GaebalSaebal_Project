@@ -243,4 +243,10 @@ public class CommunityServiceImpl implements CommunityService{
 		return communityDAO.getCommentList(vo);
 	}
 	
+	@Override //댓글 삭제
+	public void deleteComment(CommentVO vo) {
+		communityDAO.deleteComment(vo);
+	}
+
+	
 }
