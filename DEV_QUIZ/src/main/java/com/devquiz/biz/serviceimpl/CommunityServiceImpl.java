@@ -258,4 +258,9 @@ public class CommunityServiceImpl implements CommunityService{
 		return communityDAO.getSelCateName(cateIdx);
 	}
 	
+	@Override //boardIdx에 맞는 이미지 삭제(update)
+	public void deleteCommunityImg(int boardIdx) {
+		communityDAO.deleteCommunityImg(boardIdx);
+	}
+	
 }
