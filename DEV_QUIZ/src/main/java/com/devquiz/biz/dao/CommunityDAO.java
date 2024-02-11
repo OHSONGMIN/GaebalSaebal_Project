@@ -44,4 +44,10 @@ public class CommunityDAO {
 		System.out.println("===> MyBatis JDBC로 increaseHit() 실행");
 		mybatis.update("communityDAO.increaseHit", vo);
 	}
+	
+	//게시글 삭제 : 오송민
+	public void deleteCommunity(CommunityVO vo) {
+		System.out.println("===> MyBatis JDBC로 deleteCommunity() 실행");
+		mybatis.delete("communityDAO.deleteCommunity", vo);
+	}
 }
