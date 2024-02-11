@@ -51,6 +51,12 @@ public class CommunityDAO {
 		return mybatis.selectOne("communityDAO.communityBoardCount");
 	}
 	
+	//해당 카테고리 게시글만 조회(페이징 처리) : 오송민
+	public List<CommunityVO> getCommunityPagingListByCate(Map<String, Integer> pagingParams) {
+		System.out.println("===> MyBatis JDBC로 getCommunityPagingListByCate() 실행");
+		return mybatis.selectList("communityDAO.getCommunityPagingListByCate", pagingParams);
+	}
+		
 	//조회수 1 증가 : 오송민
 	public void increaseHit(CommunityVO vo) {
 		System.out.println("===> MyBatis JDBC로 increaseHit() 실행");
