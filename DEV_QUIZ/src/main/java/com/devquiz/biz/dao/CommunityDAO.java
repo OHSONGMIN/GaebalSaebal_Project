@@ -63,6 +63,12 @@ public class CommunityDAO {
 		return mybatis.selectOne("communityDAO.communityBoardCountByCate", cateIdx);
 	}
 	
+	//게시판 카테고리 조회 : 오송민
+	public List<CategoryVO> getCommunityCate() {
+		System.out.println("===> MyBatis JDBC로 getCommunityCate() 실행");
+		return mybatis.selectList("communityDAO.getCommunityCate");
+	}
+	
 	//조회수 1 증가 : 오송민
 	public void increaseHit(CommunityVO vo) {
 		System.out.println("===> MyBatis JDBC로 increaseHit() 실행");
