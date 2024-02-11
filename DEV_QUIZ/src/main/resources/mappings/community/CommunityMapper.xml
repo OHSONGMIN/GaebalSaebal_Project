@@ -192,6 +192,12 @@
 		]]>
 	</select>
 	
+	<!-- 댓글 작성(DB에 저장) : 오송민 -->
+	<insert id = "insertComment" parameterType="comment">
+		INSERT INTO COMMENTS(COMM_IDX, BOARD_IDX, MEMBER_IDX, COMM_CONTENT, COMM_DATE)
+		VALUES(COMM_SEQ.NEXTVAL, #{boardIdx}, #{memberIdx}, #{commContent}, SYSDATE)
+	</insert>
+	
 	<!-- 11/29 추가~~~~~~~~~~~~~~~~~~ 멤버 카운트 : 김지홍 -->
    	<select id="myWriteList" parameterType="int" resultType="int">
       	SELECT COUNT(*) AS CNT FROM BOARDS WHERE MEMBER_IDX= #{memberIdx }       
