@@ -212,6 +212,13 @@
 		WHERE COMM_IDX = #{commIdx}
 	</delete>
 	
+	<!-- 댓글 수정 : 오송민 -->
+	<update id = "updateComment" parameterType="comment">
+		UPDATE COMMENTS
+		SET COMM_CONTENT = #{commContent}
+		WHERE COMM_IDX = #{commIdx}
+	</update>
+	
 	<!-- 11/29 추가~~~~~~~~~~~~~~~~~~ 멤버 카운트 : 김지홍 -->
    	<select id="myWriteList" parameterType="int" resultType="int">
       	SELECT COUNT(*) AS CNT FROM BOARDS WHERE MEMBER_IDX= #{memberIdx }       
