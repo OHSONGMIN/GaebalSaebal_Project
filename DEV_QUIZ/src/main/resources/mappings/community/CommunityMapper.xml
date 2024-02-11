@@ -152,4 +152,14 @@
 	    ]]>
 	</select>
 	
+	<!-- title 검색 후 게시글 개수 조회 -->
+	<select id = "communityBoardCountByKeywordTitle" parameterType="String" resultType = "Integer">
+		<![CDATA[
+			SELECT COUNT(*)
+			FROM BOARDS
+			WHERE TITLE LIKE '%'|| #{searchKeyword} ||'%'
+			AND CATE_IDX > 100 AND CATE_IDX < 200
+		]]>
+	</select>
+	
 </mapper>
