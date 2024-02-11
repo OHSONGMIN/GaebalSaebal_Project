@@ -165,4 +165,11 @@ public class CommunityDAO {
 		System.out.println("===> MyBatis JDBC로 updateComment() 실행");
 		mybatis.update("communityDAO.updateComment", vo);
 	}
+	
+	//지홍
+	public int myWriteListPaging(int memberIdx) {
+		System.out.println(">>>>>>>>>>>>>>>>>내가 글 몇개 썼게?");
+		return mybatis.selectOne("communityDAO.myWriteList", memberIdx);
+	}
+	
 }
