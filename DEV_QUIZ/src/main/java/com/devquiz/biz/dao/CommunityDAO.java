@@ -135,4 +135,10 @@ public class CommunityDAO {
 		System.out.println("===> MyBatis JDBC로 deleteCommunityImg() 실행");
 		mybatis.update("communityDAO.deleteCommunityImg", boardIdx);
 	}
+	
+	//조회수 top10 게시글 가져오기 : 오송민
+	public List<CommunityVO> getHotCommunityList() {
+		System.out.println("===> MyBatis JDBC로 getHotCommunityList() 실행");
+		return mybatis.selectList("communityDAO.getHotCommunityList");
+	}
 }
