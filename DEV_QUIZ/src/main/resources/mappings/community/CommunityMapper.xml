@@ -5,4 +5,12 @@
   
 <mapper namespace="communityDAO">
 
+	<!-- 게시글 작성 : 오송민 -->
+	<insert id = "insertCommunity" parameterType="community">
+		INSERT INTO BOARDS(BOARD_IDX, MEMBER_IDX, CATE_IDX, TITLE, CONTENT
+		, HIT, REG_DATE, BOARD_ORI, BOARD_FILE)
+		VALUES (BOARD_SEQ.NEXTVAL, #{memberIdx}, #{cateIdx}, #{title}, #{content}
+		, 0, SYSDATE, #{boardOri}, #{boardFile})	
+	</insert>
+
 </mapper>
