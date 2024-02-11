@@ -39,4 +39,11 @@
 		WHERE BOARD_IDX = #{boardIdx}
 	</update>
 	
+	<!-- 조회수 1 증가 : 오송민 -->
+	<update id = "increaseHit" parameterType="community">
+		UPDATE BOARDS
+		SET HIT = HIT + 1
+		WHERE BOARD_IDX = #{boardIdx}
+	</update>
+	
 </mapper>
