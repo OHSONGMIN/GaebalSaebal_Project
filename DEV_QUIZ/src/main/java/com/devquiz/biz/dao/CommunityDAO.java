@@ -153,4 +153,11 @@ public class CommunityDAO {
 		System.out.println("===> MyBatis JDBC로 getCommentList() 실행");
 		return mybatis.selectList("communityDAO.getCommentList", vo);
 	}
+	
+	//댓글 삭제 : 오송민
+	public void deleteComment(CommentVO vo) {
+		System.out.println("===> MyBatis JDBC로 deleteComment() 실행");
+		mybatis.delete("communityDAO.deleteComment", vo);
+	}
+		
 }
