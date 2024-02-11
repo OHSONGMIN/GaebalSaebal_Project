@@ -22,4 +22,9 @@
 		WHERE B.BOARD_IDX = #{boardIdx}
 	</select>
 	
+	<!-- 게시글 삭제 : 오송민 -->
+	<delete id = "deleteCommunity" parameterType="community">
+		DELETE FROM BOARDS WHERE BOARD_IDX = #{boardIdx} 
+	</delete>
+	
 </mapper>
