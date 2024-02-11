@@ -39,4 +39,9 @@ public class CommunityDAO {
 		return mybatis.selectOne("communityDAO.getCommunity", vo);
 	}
 
+	//조회수 1 증가 : 오송민
+	public void increaseHit(CommunityVO vo) {
+		System.out.println("===> MyBatis JDBC로 increaseHit() 실행");
+		mybatis.update("communityDAO.increaseHit", vo);
+	}
 }
