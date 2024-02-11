@@ -50,4 +50,10 @@ public class CommunityDAO {
 		System.out.println("===> MyBatis JDBC로 deleteCommunity() 실행");
 		mybatis.delete("communityDAO.deleteCommunity", vo);
 	}
+	
+	//게시글 수정 : 오송민
+	public void updateCommunity(CommunityVO vo) {
+		System.out.println("===> MyBatis JDBC로 updateCommunity() 실행");
+		mybatis.update("communityDAO.updateCommunity", vo);
+	}
 }
