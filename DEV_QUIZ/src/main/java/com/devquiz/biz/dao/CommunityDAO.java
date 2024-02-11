@@ -75,6 +75,31 @@ public class CommunityDAO {
 		mybatis.update("communityDAO.increaseHit", vo);
 	}
 	
+	//검색 키워드 게시글 조회 : 오송민
+	public List<CommunityVO> getCommunityPagingListByKeyword(Map<String, Object> pagingParams) {
+		System.out.println("===> MyBatis JDBC로 getSearchCommunityList() 실행");
+		
+		String searchCondition = (String) pagingParams.get("searchCondition");
+		String searchKeyword = (String) pagingParams.get("searchKeyword");
+		
+		// 검색조건 값이 없을 때 기본값 설정
+		if (searchCondition == null) {
+			pagingParams.put("searchCondition", "TITLE");
+		}
+		if (searchKeyword == null) { 
+			pagingParams.put("searchKeyword", "");
+		}
+		
+		String sql = "";
+		if ("TITLE".equals((String) pagingParams.get("searchCondition"))) {
+			sql = "communityDAO.getSearchCommunityList_T";
+		} else if ("CONTENT".equals((String) pagingParams.get("searchCondition"))) {
+			sql = "communityDAO.getSearchCommunityList_C";
+		}
+		
+		return mybatis.selectList(sql, pagingParams);
+	}
+	
 	//게시글 삭제 : 오송민
 	public void deleteCommunity(CommunityVO vo) {
 		System.out.println("===> MyBatis JDBC로 deleteCommunity() 실행");
