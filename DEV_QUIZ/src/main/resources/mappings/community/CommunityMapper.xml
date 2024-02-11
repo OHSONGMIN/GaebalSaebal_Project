@@ -92,4 +92,9 @@
 	    ]]>
 	</select>
 	
+	<!-- 해당 카테고리 게시글 개수 구하기 : 오송민 -->
+	<select id = "communityBoardCountByCate" parameterType="int" resultType="Integer">
+		SELECT COUNT(BOARD_IDX) FROM BOARDS WHERE CATE_IDX = #{cateIdx}
+	</select>
+	
 </mapper>
