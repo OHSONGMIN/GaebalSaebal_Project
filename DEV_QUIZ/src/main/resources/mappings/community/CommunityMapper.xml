@@ -206,6 +206,12 @@
 		WHERE C.BOARD_IDX = #{boardIdx}
 	</select>
 	
+	<!-- 댓글 삭제 : 오송민 -->
+	<delete id = "deleteComment" parameterType="comment">
+		DELETE FROM COMMENTS
+		WHERE COMM_IDX = #{commIdx}
+	</delete>
+	
 	<!-- 11/29 추가~~~~~~~~~~~~~~~~~~ 멤버 카운트 : 김지홍 -->
    	<select id="myWriteList" parameterType="int" resultType="int">
       	SELECT COUNT(*) AS CNT FROM BOARDS WHERE MEMBER_IDX= #{memberIdx }       
