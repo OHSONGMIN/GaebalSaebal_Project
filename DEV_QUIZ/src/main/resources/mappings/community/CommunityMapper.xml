@@ -192,4 +192,9 @@
 		]]>
 	</select>
 	
+	<!-- 11/29 추가~~~~~~~~~~~~~~~~~~ 멤버 카운트 : 김지홍 -->
+   	<select id="myWriteList" parameterType="int" resultType="int">
+      	SELECT COUNT(*) AS CNT FROM BOARDS WHERE MEMBER_IDX= #{memberIdx }       
+   	</select>
+   	
 </mapper>
