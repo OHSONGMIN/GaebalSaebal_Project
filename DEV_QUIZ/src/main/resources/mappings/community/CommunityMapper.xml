@@ -198,6 +198,14 @@
 		VALUES(COMM_SEQ.NEXTVAL, #{boardIdx}, #{memberIdx}, #{commContent}, SYSDATE)
 	</insert>
 	
+	<!-- 해당 게시글 내 댓글 조회 : 오송민 -->
+	<select id = "getCommentList" parameterType="community" resultType="comment">
+		SELECT C.*, M.NICKNAME
+		FROM COMMENTS C
+		JOIN MEMBERS M ON C.MEMBER_IDX = M.MEMBER_IDX
+		WHERE C.BOARD_IDX = #{boardIdx}
+	</select>
+	
 	<!-- 11/29 추가~~~~~~~~~~~~~~~~~~ 멤버 카운트 : 김지홍 -->
    	<select id="myWriteList" parameterType="int" resultType="int">
       	SELECT COUNT(*) AS CNT FROM BOARDS WHERE MEMBER_IDX= #{memberIdx }       
