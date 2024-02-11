@@ -65,4 +65,12 @@
 	    ]]>
 	</select>
 	
+	<!-- 전체 게시글 개수 구하기 : 오송민 -->
+	<select id = "communityBoardCount" resultType="Integer">
+		<![CDATA[
+			SELECT COUNT(BOARD_IDX) FROM BOARDS
+			WHERE CATE_IDX > 100 AND CATE_IDX < 200
+		]]>
+	</select>
+	
 </mapper>
