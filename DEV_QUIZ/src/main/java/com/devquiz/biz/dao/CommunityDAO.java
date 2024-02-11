@@ -160,4 +160,9 @@ public class CommunityDAO {
 		mybatis.delete("communityDAO.deleteComment", vo);
 	}
 		
+	//댓글 수정 : 오송민
+	public void updateComment(CommentVO vo) {
+		System.out.println("===> MyBatis JDBC로 updateComment() 실행");
+		mybatis.update("communityDAO.updateComment", vo);
+	}
 }
