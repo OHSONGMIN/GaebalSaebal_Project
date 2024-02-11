@@ -147,4 +147,10 @@ public class CommunityDAO {
 		System.out.println("===> MyBatis JDBC로 insertComment() 실행");
 		mybatis.insert("communityDAO.insertComment", vo);
 	}
+	
+	//댓글 조회(해당 게시글) : 오송민
+	public List<CommentVO> getCommentList(CommunityVO vo) {
+		System.out.println("===> MyBatis JDBC로 getCommentList() 실행");
+		return mybatis.selectList("communityDAO.getCommentList", vo);
+	}
 }
