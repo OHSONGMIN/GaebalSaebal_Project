@@ -27,4 +27,16 @@
 		DELETE FROM BOARDS WHERE BOARD_IDX = #{boardIdx} 
 	</delete>
 	
+	<!-- 게시글 수정 : 오송민 -->
+	<update id = "updateCommunity" parameterType="community">
+		UPDATE BOARDS
+		SET CATE_IDX = ${cateIdx},
+			TITLE = #{title},
+			CONTENT = #{content},
+			REG_DATE = SYSDATE,
+			BOARD_ORI= #{boardOri},
+			BOARD_FILE = #{boardFile} 
+		WHERE BOARD_IDX = #{boardIdx}
+	</update>
+	
 </mapper>
