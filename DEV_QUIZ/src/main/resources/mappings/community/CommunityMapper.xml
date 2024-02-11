@@ -97,4 +97,13 @@
 		SELECT COUNT(BOARD_IDX) FROM BOARDS WHERE CATE_IDX = #{cateIdx}
 	</select>
 	
+	<!-- 커뮤니티 카테고리 조회 -->
+	<select id = "getCommunityCate" resultType="cate">
+		<![CDATA[
+			SELECT *
+			FROM CATEGORYS
+			WHERE CATE_IDX > 100 AND CATE_IDX < 200
+		]]>
+	</select>
+	
 </mapper>
