@@ -123,4 +123,10 @@ public class CommunityDAO {
 		System.out.println("===> MyBatis JDBC로 updateCommunity() 실행");
 		mybatis.update("communityDAO.updateCommunity", vo);
 	}
+	
+	//selCateIdx에 맞는 cateName가져오기 : 오송민
+	public String getSelCateName(int cateIdx) {
+		System.out.println("===> MyBatis JDBC로 getSelCateName() 실행");
+		return mybatis.selectOne("communityDAO.getSelCateName", cateIdx);
+	}
 }
