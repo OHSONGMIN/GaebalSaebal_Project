@@ -121,4 +121,15 @@
 		WHERE BOARD_IDX = #{boardIdx}
 	</update>
 	
+	<!-- 조회수 top10 게시글 조회 -->
+	<select id = "getHotCommunityList" resultType = "community">
+		<![CDATA[
+			SELECT * FROM (
+	    		SELECT * FROM BOARDS
+	    		WHERE CATE_IDX > 100 AND CATE_IDX < 200
+	    		ORDER BY HIT DESC
+			) WHERE ROWNUM <= 10
+		]]>
+	</select>
+	
 </mapper>
