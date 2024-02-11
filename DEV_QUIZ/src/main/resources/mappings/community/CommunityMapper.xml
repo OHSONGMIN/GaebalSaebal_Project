@@ -162,4 +162,24 @@
 		]]>
 	</select>
 	
+	<!-- content 검색 -->
+  	<select id = "getSearchCommunityList_C" parameterType="java.util.HashMap" resultType="community">
+  		<![CDATA[
+	    	SELECT F.*
+			FROM (
+    			SELECT A.*, ROWNUM AS CNUM
+    			FROM (
+        			SELECT B.*, M.NICKNAME, C.CATE_NAME
+        			FROM BOARDS B
+        			JOIN MEMBERS M ON B.MEMBER_IDX = M.MEMBER_IDX
+					JOIN CATEGORYS C ON B.CATE_IDX = C.CATE_IDX
+					WHERE B.CATE_IDX > 100 AND B.CATE_IDX < 200
+					AND B.CONTENT LIKE '%'|| #{searchKeyword} ||'%'
+					ORDER BY BOARD_IDX DESC
+        		) A
+			) F	
+			WHERE F.CNUM > #{start} AND F.CNUM <= (#{start} + #{limit})
+	    ]]>
+	</select>
+	
 </mapper>
