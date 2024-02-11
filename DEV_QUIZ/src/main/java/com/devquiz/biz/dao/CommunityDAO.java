@@ -100,6 +100,12 @@ public class CommunityDAO {
 		return mybatis.selectList(sql, pagingParams);
 	}
 	
+	//키워드 검색 게시글 개수 조회(TITLE)
+	public int communityBoardCountByKeywordTitle(String searchKeyword) {
+		System.out.println("===> MyBatis JDBC로 communityBoardCountByKeywordTitle() 실행");
+		return mybatis.selectOne("communityDAO.communityBoardCountByKeywordTitle", searchKeyword);
+	}
+	
 	//게시글 삭제 : 오송민
 	public void deleteCommunity(CommunityVO vo) {
 		System.out.println("===> MyBatis JDBC로 deleteCommunity() 실행");
