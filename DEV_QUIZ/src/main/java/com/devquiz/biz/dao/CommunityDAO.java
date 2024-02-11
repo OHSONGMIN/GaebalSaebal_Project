@@ -26,5 +26,10 @@ public class CommunityDAO {
 	public CommunityDAO(SqlSessionTemplate mybatis) {
 		System.out.println(">>> CommunityDAO() 객체 생성");
 	}
-		
+	
+	//게시글 작성 : 오송민
+	public void insertCommunity(CommunityVO vo) {
+		System.out.println("===> MyBatis JDBC로 insertCommunity() 실행");
+		mybatis.insert("communityDAO.insertCommunity", vo);
+	}
 }
