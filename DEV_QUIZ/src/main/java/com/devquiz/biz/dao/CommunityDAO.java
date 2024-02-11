@@ -32,4 +32,11 @@ public class CommunityDAO {
 		System.out.println("===> MyBatis JDBC로 insertCommunity() 실행");
 		mybatis.insert("communityDAO.insertCommunity", vo);
 	}
+	
+	//게시글 1개 조회 : 오송민
+	public CommunityVO getCommunity(CommunityVO vo) {
+		System.out.println("===> MyBatis JDBC로 getCommunity() 실행");
+		return mybatis.selectOne("communityDAO.getCommunity", vo);
+	}
+
 }
