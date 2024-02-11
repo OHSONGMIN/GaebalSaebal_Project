@@ -13,4 +13,13 @@
 		, 0, SYSDATE, #{boardOri}, #{boardFile})	
 	</insert>
 
+	<!-- 게시글 1개 조회 : 오송민 -->
+	<select id = "getCommunity" parameterType="community" resultType="community">
+		SELECT B.*, M.NICKNAME, C.CATE_NAME
+		FROM BOARDS B
+		JOIN MEMBERS M ON B.MEMBER_IDX = M.MEMBER_IDX
+		JOIN CATEGORYS C ON B.CATE_IDX = C.CATE_IDX
+		WHERE B.BOARD_IDX = #{boardIdx}
+	</select>
+	
 </mapper>
