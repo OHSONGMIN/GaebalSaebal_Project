@@ -129,4 +129,10 @@ public class CommunityDAO {
 		System.out.println("===> MyBatis JDBC로 getSelCateName() 실행");
 		return mybatis.selectOne("communityDAO.getSelCateName", cateIdx);
 	}
+	
+	//boardIdx에 해당하는 이미지 삭제 : 오송민
+	public void deleteCommunityImg(int boardIdx) {
+		System.out.println("===> MyBatis JDBC로 deleteCommunityImg() 실행");
+		mybatis.update("communityDAO.deleteCommunityImg", boardIdx);
+	}
 }
