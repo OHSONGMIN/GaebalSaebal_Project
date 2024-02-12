@@ -47,4 +47,15 @@
 		]]>
 	</select>
 	
+	<!-- 즐겨찾기 게시글 개수 구하기 : 오송민 -->
+	<select id = "communityBoardCountByBookmark" parameterType="int" resultType="Integer">
+		SELECT COUNT(*)
+		FROM BOARDS
+		WHERE CATE_IDX IN (
+    		SELECT CATE_IDX
+    		FROM BOOKMARK
+    		WHERE MEMBER_IDX = #{memberIdx}
+		)
+	</select>
+	
 </mapper>
