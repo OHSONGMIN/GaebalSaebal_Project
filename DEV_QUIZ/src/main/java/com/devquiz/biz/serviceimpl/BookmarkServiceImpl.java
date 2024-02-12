@@ -22,4 +22,9 @@ public class BookmarkServiceImpl implements BookmarkService{
 			System.out.println(">> BookmarkServiceImpl() 객체 생성");
 		}
 		
+		@Override //북마크 등록
+		public void addBookmark(BookmarkVO vo) {
+			bookmarkDAO.addBookmark(vo);
+		}
+		
 }
