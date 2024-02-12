@@ -41,4 +41,10 @@ public class BookmarkDAO {
 		System.out.println("===> MyBatis JDBC로 deleteBookmark() 실행");
 		mybatis.delete("bookmarkDAO.deleteBookmark", vo);
 	}
+	
+	//북마크 게시글만 조회(페이징 처리) : 오송민
+	public List<CommunityVO> getCommunityPagingListByBookmark(Map<String, Integer> pagingParams) {
+		System.out.println("===> MyBatis JDBC로 getCommunityPagingListByBookmark() 실행");
+		return mybatis.selectList("bookmarkDAO.getCommunityPagingListByBookmark", pagingParams);
+	}
 }
