@@ -11,4 +11,11 @@
 		VALUES (BOOKMARK_SEQ.NEXTVAL, #{memberIdx}, #{cateIdx})
 	</insert>
 	
+	<!-- 즐겨찾기(북마크) 여부 확인 -->
+	<select id = "getBookmarkStatus" parameterType = "bookmark" resultType = "int">
+		SELECT COUNT(*)
+		FROM BOOKMARK
+		WHERE MEMBER_IDX = #{memberIdx} AND CATE_IDX = #{cateIdx}
+	</select>
+	
 </mapper>
