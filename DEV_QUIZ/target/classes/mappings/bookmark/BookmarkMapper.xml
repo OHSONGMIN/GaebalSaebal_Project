@@ -18,4 +18,10 @@
 		WHERE MEMBER_IDX = #{memberIdx} AND CATE_IDX = #{cateIdx}
 	</select>
 	
+	<!-- 즐겨찾기(북마크) 삭제 -->
+	<delete id = "deleteBookmark" parameterType = "bookmark">
+		DELETE FROM BOOKMARK
+		WHERE MEMBER_IDX = #{memberIdx} AND CATE_IDX = #{cateIdx}
+	</delete>
+	
 </mapper>
