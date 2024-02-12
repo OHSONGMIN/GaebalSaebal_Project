@@ -24,4 +24,27 @@
 		WHERE MEMBER_IDX = #{memberIdx} AND CATE_IDX = #{cateIdx}
 	</delete>
 	
+	<!-- 즐겨찾기 게시글만 조회 : 오송민 -->
+	<select id = "getCommunityPagingListByBookmark" parameterType="java.util.HashMap" resultType="community">
+		<![CDATA[
+			SELECT F.*
+			FROM (
+			    SELECT A.*, ROWNUM AS CNUM
+			    FROM (
+			        SELECT B.*, M.NICKNAME, C.CATE_NAME
+			        FROM BOARDS B
+			        JOIN MEMBERS M ON B.MEMBER_IDX = M.MEMBER_IDX
+			        JOIN CATEGORYS C ON B.CATE_IDX = C.CATE_IDX
+			        WHERE B.CATE_IDX IN (
+			            SELECT CATE_IDX
+			            FROM BOOKMARK
+			            WHERE MEMBER_IDX = #{memberIdx}
+			        )
+			        ORDER BY B.BOARD_IDX DESC
+			    ) A
+			) F
+			WHERE F.CNUM > #{start} AND F.CNUM <= (#{start} + #{limit})
+		]]>
+	</select>
+	
 </mapper>
