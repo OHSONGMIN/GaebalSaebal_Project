@@ -5,4 +5,10 @@
   
 <mapper namespace="bookmarkDAO">
 
+	<!-- 즐겨찾기(북마크) 등록 -->
+	<insert id = "addBookmark" parameterType = "bookmark">
+		INSERT INTO BOOKMARK(BOOKMARK_IDX, MEMBER_IDX, CATE_IDX)
+		VALUES (BOOKMARK_SEQ.NEXTVAL, #{memberIdx}, #{cateIdx})
+	</insert>
+	
 </mapper>
