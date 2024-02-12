@@ -27,4 +27,9 @@ public class BookmarkServiceImpl implements BookmarkService{
 			bookmarkDAO.addBookmark(vo);
 		}
 		
+		@Override //북마크 여부 조회
+		public int getBookmarkStatus(BookmarkVO vo) {
+			return bookmarkDAO.getBookmarkStatus(vo);
+		}
+		
 }
