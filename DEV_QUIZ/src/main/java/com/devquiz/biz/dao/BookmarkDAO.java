@@ -35,4 +35,10 @@ public class BookmarkDAO {
 		System.out.println("===> MyBatis JDBC로 getBookmarkStatus() 실행");
 		return mybatis.selectOne("bookmarkDAO.getBookmarkStatus", vo);
 	}
+	
+	//북마크 삭제 : 오송민
+	public void deleteBookmark(BookmarkVO vo) {
+		System.out.println("===> MyBatis JDBC로 deleteBookmark() 실행");
+		mybatis.delete("bookmarkDAO.deleteBookmark", vo);
+	}
 }
