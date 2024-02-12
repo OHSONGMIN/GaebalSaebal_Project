@@ -32,4 +32,9 @@ public class BookmarkServiceImpl implements BookmarkService{
 			return bookmarkDAO.getBookmarkStatus(vo);
 		}
 		
+		@Override //북마크 취소
+		public void deleteBookmark(BookmarkVO vo) {
+			bookmarkDAO.deleteBookmark(vo);
+		}
+		
 }
