@@ -47,4 +47,10 @@ public class BookmarkDAO {
 		System.out.println("===> MyBatis JDBC로 getCommunityPagingListByBookmark() 실행");
 		return mybatis.selectList("bookmarkDAO.getCommunityPagingListByBookmark", pagingParams);
 	}
+	
+	//북마크 게시글 개수 조회 : 오송민
+	public int communityBoardCountByBookmark(int memberIdx) {
+		System.out.println("===> MyBatis JDBC로 communityBoardCountByBookmark() 실행");
+		return mybatis.selectOne("bookmarkDAO.communityBoardCountByBookmark", memberIdx);
+	}
 }
