@@ -29,4 +29,10 @@ public class BookmarkDAO {
 		System.out.println("===> MyBatis JDBC로 addBookmark() 실행");
 		mybatis.insert("bookmarkDAO.addBookmark", vo);
 	}
+	
+	//북마크 여부 확인 : 오송민
+	public int getBookmarkStatus(BookmarkVO vo) {
+		System.out.println("===> MyBatis JDBC로 getBookmarkStatus() 실행");
+		return mybatis.selectOne("bookmarkDAO.getBookmarkStatus", vo);
+	}
 }
