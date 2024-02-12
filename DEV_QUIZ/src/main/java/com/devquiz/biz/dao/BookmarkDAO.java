@@ -24,4 +24,9 @@ public class BookmarkDAO {
 		System.out.println(">>> BookmarkDAO() 객체 생성");
 	}
 
+	//북마크 등록 : 오송민
+	public void addBookmark(BookmarkVO vo) {
+		System.out.println("===> MyBatis JDBC로 addBookmark() 실행");
+		mybatis.insert("bookmarkDAO.addBookmark", vo);
+	}
 }
