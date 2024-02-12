@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="myProduct">
+
+	<!-- select 태그 3개 속성 id, resultType, parameterType
+	id : 사용할 명칭(필수항목), 현재 매퍼파일에서 유일한 이름 사용
+	resultType : 조회 결과값 저장하기 위한 데이터 타입(1개 데이터에 대한 타입지정)
+	parameterType : 전달 받은 파라미터 데이터의 타입 지정(선택적)
+	-->
+	
+	<!-- 결제 -->
+	<insert id="insertMyProduct" parameterType="myProductVO">
+		INSERT INTO MY_PRODUCTS (MY_IDX, MEMBER_IDX, PRODUCT_IDX)
+		VALUES (MY_SEQ.NEXTVAL, #{memberIdx}, #{productIdx})
+	</insert>
+	
+	<!-- 취소 -->
+	<delete id="deleteMyProduct" parameterType="myProductVO">
+		DELETE FROM MY_PRODUCTS WHERE MEMBER_IDX = #{memberIdx} AND PRODUCT_IDX = #{productIdx}
+	</delete>
+	
+	<!-- 조회(회원이 가지고 있는 상품들 정보) -->
+	<select id="selectMyProduct" parameterType="int" resultType="myProductVO">
+		SELECT M.PRODUCT_IDX, P.PRODUCT_FILE, P.PRODUCT_NAME
+		FROM MY_PRODUCTS M, PRODUCTS P
+		WHERE M.PRODUCT_IDX = P.PRODUCT_IDX
+		AND M.MEMBER_IDX = #{memberIdx}
+		ORDER BY M.PRODUCT_IDX
+	</select>
+	
+	<!-- 조회(회원이 상품을 가지고 있는지 여부) -->
+	<select id="selectMyProductOk" parameterType="myProductVO" resultType="int">
+		SELECT COUNT(*)
+		FROM MY_PRODUCTS
+		WHERE MEMBER_IDX = #{memberIdx}
+		AND PRODUCT_IDX = #{productIdx}
+	</select>
+	
+</mapper>

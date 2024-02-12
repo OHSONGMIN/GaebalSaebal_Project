@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="game">
+	
+
+ 	<insert id="adminInsertGame" parameterType="game">
+		INSERT INTO GAMES (QUIZ_IDX, CATE_IDX, QUIZ, SAVED_POINT, SAVED_SCORE, 
+		                   EXAMPLE_NO_1, EXAMPLE_NO_2, EXAMPLE_NO_3, EXAMPLE_NO_4,
+		                   QUIZ_ANSWER, QUIZ_ORI, QUIZ_FILE)
+		VALUES (QUIZ_SEQ.NEXTVAL, #{cateIdx}, #{quiz}, #{savedPoint}, #{savedScore},
+		        #{exampleNo1}, #{exampleNo2}, #{exampleNo3}, #{exampleNo4}, 
+		        #{quizAnswer}, #{quizOri}, #{quizFile})
+	</insert>
+	
+	<select id="adminGameCateList" parameterType="game" resultType="game">
+		SELECT C.CATE_IDX, C.CATE_NAME, G.QUIZ_IDX, G.QUIZ, G.SAVED_POINT, G.SAVED_SCORE,
+	      	   G.EXAMPLE_NO_1, G.EXAMPLE_NO_2, G.EXAMPLE_NO_3, G.EXAMPLE_NO_4, G.QUIZ_ANSWER
+		FROM GAMES G, CATEGORYS C
+		WHERE G.CATE_IDX = C.CATE_IDX
+		AND C.CATE_IDX BETWEEN 200 AND 299
+	</select>
+
+<!-- 	
+	<select id="adminGameList" parameterType="game" resultType="game">
+	    SELECT 
+	    	QUIZ_IDX, QUIZ, SAVED_POINT, SAVED_SCORE, 
+	    	EXAMPLE_NO_1, EXAMPLE_NO_2, EXAMPLE_NO_3, EXAMPLE_NO_4, QUIZ_ANSWER
+	    FROM
+	    	GAMES
+	    WHERE
+	    	CATE_IDX = 201
+	    AND
+	    	QUIZ_IDX = #{quizIdx}
+	</select>
+	
+	<select id="adminGameList" parameterType="game" resultType="game">
+	    SELECT 
+	    	QUIZ_IDX, QUIZ, SAVED_POINT, SAVED_SCORE, 
+	    	EXAMPLE_NO_1, EXAMPLE_NO_2, EXAMPLE_NO_3, EXAMPLE_NO_4, QUIZ_ANSWER
+	    FROM
+	    	GAMES
+	    WHERE
+	    	CATE_IDX = 201
+	    AND
+	    	QUIZ = #{quiz}
+	</select>
+	 -->
+	<select id="adminGetGame" parameterType="game" resultType="game">
+		SELECT C.CATE_IDX, C.CATE_NAME, G.QUIZ_IDX, G.QUIZ, G.SAVED_POINT, G.SAVED_SCORE,
+	      	   G.EXAMPLE_NO_1, G.EXAMPLE_NO_2, G.EXAMPLE_NO_3, G.EXAMPLE_NO_4, G.QUIZ_ANSWER
+		FROM GAMES G, CATEGORYS C
+		WHERE G.CATE_IDX = C.CATE_IDX
+		AND C.CATE_IDX = #{cateIdx}
+	</select>
+	
+	<select id="adminGetGameOne" parameterType="game" resultType="game">
+		SELECT C.CATE_IDX, C.CATE_NAME, G.QUIZ_IDX, G.QUIZ, G.SAVED_POINT, G.SAVED_SCORE,
+	      	   G.EXAMPLE_NO_1, G.EXAMPLE_NO_2, G.EXAMPLE_NO_3, G.EXAMPLE_NO_4, G.QUIZ_ANSWER
+		FROM GAMES G, CATEGORYS C
+		WHERE G.CATE_IDX = C.CATE_IDX
+		AND G.QUIZ_IDX = #{quizIdx}
+	</select>
+
+	<update id="adminGameUpdate" parameterType="game">
+		UPDATE GAMES
+        SET CATE_IDX = #{cateIdx},
+            QUIZ = #{quiz},
+            SAVED_POINT = #{savedPoint},
+            SAVED_SCORE = #{savedScore},
+            EXAMPLE_NO_1 = #{exampleNo1},
+            EXAMPLE_NO_2 = #{exampleNo2},
+            EXAMPLE_NO_3 = #{exampleNo3},
+            EXAMPLE_NO_4 = #{exampleNo4},
+            QUIZ_ANSWER = #{quizAnswer}
+        WHERE QUIZ_IDX = #{quizIdx}
+	</update>
+	
+	<delete id="adminGameDelete" parameterType="game">
+		DELETE FROM GAMES WHERE QUIZ_IDX = #{quizIdx}
+	</delete>
+
+<!--(끝) ================================================================================ [admin] ================================================================================ (끝)-->
+	
+<!--(시작) ================================================================================ [geaebal] ================================================================================(시작)-->
+
+	<select id="gaebalGetGameList" parameterType="game" resultType="game">
+	       SELECT * 
+	       FROM (SELECT * FROM GAMES WHERE CATE_IDX = #{cateIdx} ORDER BY DBMS_RANDOM.RANDOM)
+	</select>
+
+<!--(끝) ================================================================================ [geaebal] ================================================================================(끝)-->
+	
+</mapper>

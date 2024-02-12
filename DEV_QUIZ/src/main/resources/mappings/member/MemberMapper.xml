@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberDAO">
+	<!-- 	
+	// (시작) ==================== [김지홍] ==================== (시작)
+	// (시작) ==================== [김지홍] ==================== (시작)
+	// (시작) ==================== [김지홍] ==================== (시작) 
+	-->
+	<!-- 회원가입 : 김지홍 -->
+	<insert id="insertMember" parameterType="member" >
+		INSERT INTO MEMBERS (MEMBER_IDX, ID, PWD, NAME, NICKNAME, EMAIL, PHONE, JOIN_DATE)
+		VALUES (MEM_SEQ.NEXTVAL, #{id}, #{pwd}, #{name}, #{nickname}, #{email}, #{phone}, SYSDATE)	
+	</insert>
+	
+	<!-- 로그인 : 김지홍 -->
+	<select id="loginMember" parameterType="member" resultType="member">
+		SELECT *
+		FROM MEMBERS
+		WHERE ID = #{id} AND PWD = #{pwd} AND IS_DEL = 0 and is_admin = 0  <!-- to.지홍씨~ is_admin 컬럼이 0인 값도 회원입니다~ 1값은 관리자 페이지에서 따로 로그인하게 구현해야할것 같아요~ -->
+	</select>
+	
+	<!-- 회원정보수정: 김지홍 -->
+	<update id="updateMember" parameterType="member">
+		UPDATE MEMBERS
+			SET PWD = #{pwd}
+			,	NICKNAME = #{nickname}
+			,	EMAIL = #{email}
+			, 	PHONE = #{phone}
+		WHERE ID = #{id}	
+	</update>
+	
+	<!-- 회원탈퇴 : 김지홍 -->	
+	<delete id="deleteMember" parameterType="member">
+		DELETE FROM MEMBERS
+		WHERE ID = #{id}	
+	</delete>	
+		
+	<!-- 아이디 중복체크 : 김지홍 -->
+	<select id="idCheck" parameterType="string" resultType="int">
+		SELECT COUNT(*) AS CNT 
+		FROM MEMBERS
+    	WHERE ID = #{id}
+	</select>
+	
+	<!-- 아이디 찾기 : 김지홍 -->
+	<select id="searchId" parameterType="map" resultType="string">
+		SELECT ID  
+		FROM MEMBERS
+		WHERE NAME = #{name} AND EMAIL=#{email} AND IS_DEL = 0
+	</select>
+	
+	<!-- 비밀번호 찾기 : 김지홍 -->
+	<select id="searchPwd" parameterType="map" resultType="string">
+		SELECT PWD
+		FROM MEMBERS
+		WHERE ID = #{id} AND EMAIL = #{email}		
+	</select>
+
+	<!-- 이메일 중복체크 : 김지홍 -->
+	<select id="emailCheck" parameterType="string" resultType="int">
+		SELECT COUNT(*) AS CNT 
+		FROM MEMBERS
+    	WHERE email = #{email}
+	</select>
+	
+	<!-- 회원탈퇴(논리탈퇴) : 김지홍 -->
+	<update id ="deleteMemberSoft" parameterType="member">
+		UPDATE MEMBERS
+			SET IS_DEL = 1
+		WHERE ID = #{id}
+	</update>
+
+
+	<!-- 비밀번호 찾기: 찾은 정보 데려오기-->
+	<select id ="searchMem" parameterType="java.util.HashMap" resultType="member">
+		SELECT *
+		FROM MEMBERS
+		WHERE ID = #{id} AND EMAIL = #{email}
+	</select>	
+	
+	<update id="pwdUpdate" parameterType="string">
+		UPDATE MEMBERS 
+			SET PWD = #{pwd}
+		WHERE EMAIL = #{email}
+	</update>	
+	
+	<!-- 관리자 로그인 -->
+	<select id="adminLogin" parameterType="member" resultType="member">
+		SELECT *
+		FROM MEMBERS
+		WHERE ID = #{id} AND PWD = #{pwd} AND IS_ADMIN = 1		
+	</select>
+	
+	<!-- 내 즐겨찾기 목록 11/28 추가-->
+	<select id="myFavorite" parameterType="int" resultType="cate">
+		SELECT C.CATE_NAME, C.CATE_IDX
+		FROM MEMBERS M
+		JOIN BOOKMARK B ON M.MEMBER_IDX = B.MEMBER_IDX
+		JOIN CATEGORYS C ON B.CATE_IDX = C.CATE_IDX
+		WHERE M.MEMBER_IDX = #{memberIdx}
+	</select>
+	
+	<!-- 내가 쓴 글만 조회하기 11/28 추가 -->
+	<select id="myWrite" parameterType="int" resultType="community">
+		SELECT *
+		FROM BOARDS 
+		WHERE MEMBER_IDX = #{memberIdx}
+	</select>
+	
+	<!-- 내 포인트 적립 목록 보기 -->
+	<select id="myPoints" parameterType="int" resultType="point">
+		SELECT *   
+		FROM POINTS
+		WHERE MEMBER_IDX = #{memberIdx}
+		ORDER BY POINT_DATE DESC
+	</select>
+	
+	
+	
+	
+	
+	<!-- 	
+	// (끝) ==================== [김지홍] ==================== (끝)
+	// (끝) ==================== [김지홍] ==================== (끝)
+	// (끝) ==================== [김지홍] ==================== (끝)
+	 -->
+	 
+	<!-- 	
+	// (시작) ==================== [한예림] ==================== (시작)
+	// (시작) ==================== [한예림] ==================== (시작)
+	// (시작) ==================== [한예림] ==================== (시작) 
+	-->
+
+	<!-- 예림 시작 -->
+	<select id="admingetMemberList" parameterType="member" resultType="member">
+		SELECT *
+		FROM MEMBERS
+		WHERE MEMBER_IDX NOT IN 0
+		ORDER BY MEMBER_IDX DESC
+	</select>
+	<select id="admingetMemberList_I" parameterType="string" resultType="member">
+		SELECT *
+		FROM MEMBERS
+		WHERE ID LIKE '%'|| #{searchKeyword} ||'%' 
+		AND MEMBER_IDX NOT IN 0
+		ORDER BY MEMBER_IDX DESC
+	</select>
+	<select id="admingetMemberList_N" parameterType="string" resultType="member">
+		SELECT *
+		FROM MEMBERS
+		WHERE NAME LIKE '%'|| #{searchKeyword} ||'%'
+		AND MEMBER_IDX NOT IN 0
+		ORDER BY MEMBER_IDX DESC
+	</select>
+	
+
+	
+	<update id="adminupdateMember" parameterType="member">
+		UPDATE MEMBERS 
+		SET POINT = #{point}
+		WHERE MEMBER_IDX = #{memberIdx}
+	</update>
+	
+	<update id="admindeleteMember" parameterType="member">
+		UPDATE MEMBERS SET IS_DEL = 1 WHERE MEMBER_IDX = #{memberIdx} 
+	</update>
+	
+<!-- to. 예림씨 / 관리자가 할 수 있는 최대 권한은 멤버 상태값 변경이라고 생각해서 (1로 변경되면 삭제된것) 37번에 업데이트 쿼리로 수정해보았습니다! // 하영
+	<delete id="deleteMember" parameterType="member">
+		DELETE FROM MEMBERS WHERE MEMBER_IDX = #{memberIdx} 
+	</delete> -->
+
+	<!-- 아이디로 게시글 수 -->
+	<select id="admingetIdCnt" parameterType="int" resultType="int">
+		SELECT COUNT(BOARD_IDX)
+		FROM BOARDS
+		WHERE MEMBER_IDX = #{memberIdx}
+	</select>
+	
+	<!-- 아이디로 게시글 추출 -->
+	<select id="admingetId" parameterType="int" resultType="board">
+		SELECT *
+		FROM BOARDS
+		WHERE MEMBER_IDX = #{memberIdx}
+	</select>
+	
+	<!-- 아이디로 포인트 수 -->
+	<select id="admingetPointCnt" parameterType="int" resultType="int">
+		SELECT NVL(SUM(POINT), 0)
+		FROM POINTS
+		WHERE MEMBER_IDX = #{memberIdx}
+	</select>
+
+	<!-- 아이디로 주문 수 -->	
+	<select id="adminorderCnt" parameterType="int" resultType="int">
+		SELECT COUNT(ORDER_IDX)
+		FROM ORDERS
+		WHERE MEMBER_IDX = #{memberIdx}
+	</select>
+<!-- 예림 끝 -->
+	<!-- 	
+	// (끝) ==================== [한예림] ==================== (끝)
+	// (끝) ==================== [한예림] ==================== (끝)
+	// (끝) ==================== [한예림] ==================== (끝)
+	 -->
+	<!-- 23.11.24 예림 시작*****************************************************************	
+	// (시작) ==================== [한예림] ==================== (시작)
+	// (시작) ==================== [한예림] ==================== (시작)
+	// (시작) ==================== [한예림] ==================== (시작) 
+	-->
+	 <update id="adminupdateAdmin" parameterType="member">
+		UPDATE MEMBERS SET IS_ADMIN = 1 WHERE MEMBER_IDX = #{memberIdx} 
+	</update>
+	 <!-- 	
+	// (끝) ==================== [한예림] ==================== (끝)
+	// (끝) ==================== [한예림] ==================== (끝)
+	// (끝) ==================== [한예림] ==================== (끝)
+	 -->
+	 
+	 
+	 
+	<!-- 23.11.28 예림 시작*****************************************************************-->	
+	<!-- 멤버 페이징처리-->
+	<select id="adminMemberPaging" parameterType="java.util.HashMap" resultType="member">
+	    <![CDATA[
+	    	SELECT F.*
+			FROM (
+    			SELECT A.*, ROWNUM AS CNUM
+    			FROM (
+    				SELECT *
+					FROM MEMBERS 
+					ORDER BY MEMBER_IDX
+        		) A
+			) F	
+			WHERE F.CNUM > #{start} AND F.CNUM <= (#{start} + #{limit})
+	    ]]>
+	</select>
+	
+	<!-- 전체 게시글 개수 구하기-->
+	<select id = "adminMemberCount" resultType="Integer">
+		SELECT COUNT(MEMBER_IDX) FROM MEMBERS
+	</select>
+	
+	<select id="admingetMember" parameterType="int" resultType="member">
+		SELECT MEMBER_IDX, ID, NAME, NICKNAME, EMAIL, PHONE, POINT, SCORE,
+		TO_CHAR(JOIN_DATE, 'YYYY-MM-DD') AS "JOIN_DATE", IS_DEL, IS_ADMIN, MEMBER_ORI, MEMBER_FILE
+		FROM MEMBERS
+		WHERE MEMBER_IDX = #{memberIdx}
+	</select>
+	<!-- 23.11.28 예림 끝*****************************************************************-->	
+		
+</mapper>
+
+
+
+
+
+
+

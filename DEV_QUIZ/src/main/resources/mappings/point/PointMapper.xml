@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pointDAO">
+	<!-- 예림 시작 -->
+	<!-- 아이디로 포인트 내역 -->
+	<select id="admingetPoint" parameterType="int"
+		resultType="point">
+		SELECT F.*
+		FROM(
+		SELECT A.*, ROWNUM AS NUM
+		FROM(
+		SELECT
+		POINT_IDX, MEMBER_IDX, POINT_STATUS, POINT,
+		TO_CHAR(POINT_DATE,
+		'YYYY-MM-DD') AS "POINT_DATE",
+		TO_CHAR(DUE_DATE, 'YYYY-MM-DD') AS
+		"DUE_DATE"
+		FROM POINTS
+		WHERE MEMBER_IDX = #{memberIdx}
+		ORDER BY
+		POINT_IDX) A)F
+	</select>
+
+	<!-- 포인트 지급 취소 -->
+	<delete id="admindeletePoint" parameterType="point">
+		DELETE FROM POINTS
+		WHERE POINT_IDX = #{pointIdx}
+	</delete>
+	<!-- 예림 끝 -->
+
+	<!-- 민주 시작 -->
+	<!-- 구매+판매하고 포인트 갱신 -->
+	<insert id="buyProductPoint" parameterType="point">
+		INSERT INTO POINTS
+		(POINT_IDX, MEMBER_IDX, POINT)
+		VALUES (POINT_SEQ.NEXTVAL, #{memberIdx},
+		#{point})
+	</insert>
+	<!-- 민주 시작 -->
+
+</mapper>
+
+
+
+
+
+
+

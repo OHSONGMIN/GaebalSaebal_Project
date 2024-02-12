@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order">
+
+	<!-- select 태그 3개 속성 id, resultType, parameterType
+	id : 사용할 명칭(필수항목), 현재 매퍼파일에서 유일한 이름 사용
+	resultType : 조회 결과값 저장하기 위한 데이터 타입(1개 데이터에 대한 타입지정)
+	parameterType : 전달 받은 파라미터 데이터의 타입 지정(선택적)
+	-->
+	
+	<!-- 결제 -->
+	<insert id="insertOrder" parameterType="orderVO">
+		INSERT INTO ORDERS (ORDER_IDX, MEMBER_IDX, SUM_PRICE, ORDER_DEL, ORDER_DATE)
+		VALUES (OR_SEQ.NEXTVAL, #{memberIdx}, #{sumPrice}, 0, SYSDATE)
+	</insert>
+	
+	<!-- OrderDetail 테이블에 넣기 위해 가장 최근 ORDER_IDX 구하기 -->
+	<select id="selectOrderIdx" parameterType="int" resultType="int">
+		SELECT MAX(ORDER_IDX)
+		FROM ORDERS
+		WHERE MEMBER_IDX = #{memberIdx}
+	</select>
+	
+	<!-- 주문 조회 -->
+	<select id="selectOrder" parameterType="int" resultType="orderVO">
+        SELECT ORDER_IDX, SUM_PRICE, ORDER_DATE, ORDER_DEL
+		FROM ORDERS
+		WHERE MEMBER_IDX = #{memberIdx}
+	</select>
+	
+	<!-- 주문 취소 -->
+	<update id="updateOrder" parameterType="orderVO">
+		UPDATE ORDERS
+		SET ORDER_DEL = 1
+		WHERE MEMBER_IDX = #{memberIdx}
+		AND ORDER_IDX = #{orderIdx}
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+

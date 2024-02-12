@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="bookmarkDAO">
+
+	<!-- 즐겨찾기(북마크) 등록 -->
+	<insert id = "addBookmark" parameterType = "bookmark">
+		INSERT INTO BOOKMARK(BOOKMARK_IDX, MEMBER_IDX, CATE_IDX)
+		VALUES (BOOKMARK_SEQ.NEXTVAL, #{memberIdx}, #{cateIdx})
+	</insert>
+	
+	<!-- 즐겨찾기(북마크) 여부 확인 -->
+	<select id = "getBookmarkStatus" parameterType = "bookmark" resultType = "int">
+		SELECT COUNT(*)
+		FROM BOOKMARK
+		WHERE MEMBER_IDX = #{memberIdx} AND CATE_IDX = #{cateIdx}
+	</select>
+	
+	<!-- 즐겨찾기(북마크) 삭제 -->
+	<delete id = "deleteBookmark" parameterType = "bookmark">
+		DELETE FROM BOOKMARK
+		WHERE MEMBER_IDX = #{memberIdx} AND CATE_IDX = #{cateIdx}
+	</delete>
+	
+	<!-- 즐겨찾기 게시글만 조회 : 오송민 -->
+	<select id = "getCommunityPagingListByBookmark" parameterType="java.util.HashMap" resultType="community">
+		<![CDATA[
+			SELECT F.*
+			FROM (
+			    SELECT A.*, ROWNUM AS CNUM
+			    FROM (
+			        SELECT B.*, M.NICKNAME, C.CATE_NAME
+			        FROM BOARDS B
+			        JOIN MEMBERS M ON B.MEMBER_IDX = M.MEMBER_IDX
+			        JOIN CATEGORYS C ON B.CATE_IDX = C.CATE_IDX
+			        WHERE B.CATE_IDX IN (
+			            SELECT CATE_IDX
+			            FROM BOOKMARK
+			            WHERE MEMBER_IDX = #{memberIdx}
+			        )
+			        ORDER BY B.BOARD_IDX DESC
+			    ) A
+			) F
+			WHERE F.CNUM > #{start} AND F.CNUM <= (#{start} + #{limit})
+		]]>
+	</select>
+	
+	<!-- 즐겨찾기 게시글 개수 구하기 : 오송민 -->
+	<select id = "communityBoardCountByBookmark" parameterType="int" resultType="Integer">
+		SELECT COUNT(*)
+		FROM BOARDS
+		WHERE CATE_IDX IN (
+    		SELECT CATE_IDX
+    		FROM BOOKMARK
+    		WHERE MEMBER_IDX = #{memberIdx}
+		)
+	</select>
+	
+</mapper>

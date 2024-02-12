@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardDAO">
+
+
+<!-- 예림 시작 -->
+	<!-- 커뮤니티 조회  -->	
+	<select id="admingetBoardList" parameterType="board" resultType="board">
+		SELECT B.*, M.NICKNAME, C.CATE_NAME
+		FROM BOARDS B
+		JOIN MEMBERS M
+		ON B.MEMBER_IDX = M.MEMBER_IDX
+		JOIN CATEGORYS C
+		ON B.CATE_IDX = C.CATE_IDX
+		WHERE NOT B.CATE_IDX = '100' 
+		ORDER BY B.BOARD_IDX DESC
+	</select>
+	<select id="admingetWriter" parameterType="board" resultType="String">
+		SELECT DISTINCT(NICKNAME)
+		FROM MEMBERS
+		WHERE MEMBER_IDX = (
+			SELECT MEMBER_IDX
+			FROM BOARDS
+			WHERE BOARD_IDX = #{boardIdx})
+	</select>
+	<select id="admingetCategory" parameterType="board" resultType="String">
+		SELECT DISTINCT(CATE_NAME)
+		FROM CATEGORYS
+		WHERE CATE_IDX = (
+			SELECT CATE_IDX
+			FROM BOARDS
+			WHERE BOARD_IDX = #{boardIdx})
+	</select>
+	
+	<select id="admingetBoardList_T" parameterType="string" resultType="board">
+		SELECT B.*, M.NICKNAME, C.CATE_NAME
+		FROM BOARDS B
+		JOIN MEMBERS M
+		ON B.MEMBER_IDX = M.MEMBER_IDX
+		JOIN CATEGORYS C
+		ON B.CATE_IDX = C.CATE_IDX
+		WHERE B.TITLE LIKE '%'|| #{searchKeyword} ||'%' AND NOT B.CATE_IDX = '100' 
+		ORDER BY B.BOARD_IDX DESC
+	</select>
+	<select id="admingetBoardList_C" parameterType="string" resultType="board">
+		SELECT B.*, M.NICKNAME, C.CATE_NAME
+		FROM BOARDS B
+		JOIN MEMBERS M
+		ON B.MEMBER_IDX = M.MEMBER_IDX
+		JOIN CATEGORYS C
+		ON B.CATE_IDX = C.CATE_IDX
+		WHERE B.CONTENT LIKE '%'|| #{searchKeyword} ||'%' AND NOT B.CATE_IDX = '100' 
+		ORDER BY B.BOARD_IDX DESC
+	</select>
+	
+	<!-- 공지사항 조회 -->
+	<select id="admingetNoticeBoardList" parameterType="board" resultType="board">
+		SELECT *
+		FROM BOARDS
+		WHERE CATE_IDX = '100' 
+		ORDER BY BOARD_IDX DESC
+	</select>
+	
+	<select id="admingetNoticeBoardList_T" parameterType="string" resultType="board">
+		SELECT *
+		FROM BOARDS
+		WHERE TITLE LIKE '%'|| #{searchKeyword} ||'%' AND CATE_IDX = '100' 
+		ORDER BY BOARD_IDX DESC
+	</select>
+	<select id="admingetNoticeBoardList_C" parameterType="string" resultType="board">
+		SELECT *
+		FROM BOARDS
+		WHERE CONTENT LIKE '%'|| #{searchKeyword} ||'%' AND CATE_IDX = '100'
+		ORDER BY BOARD_IDX DESC
+	</select>
+	
+	<select id="admingetBoard" parameterType="board" resultType="board">
+		SELECT *
+		FROM BOARDS
+		WHERE BOARD_IDX = #{boardIdx}
+	</select>	
+	
+	<insert id="admininsertBoard" parameterType="board">
+		INSERT INTO BOARDS (BOARD_IDX, CATE_IDX, TITLE, CONTENT, REG_DATE, MEMBER_IDX) 
+		VALUES ((SELECT NVL(MAX(BOARD_IDX),0) + 1 FROM BOARDS), '100', #{title}, #{content}, SYSDATE, #{memberIdx})    
+	</insert>
+	
+	<update id="adminupdateBoard" parameterType="board">
+		UPDATE BOARDS 
+		SET TITLE = #{title}, 
+		    CONTENT = #{content}
+		WHERE BOARD_IDX = #{boardIdx}
+	</update>
+	
+	<delete id="admindeleteBoard" parameterType="board">
+		DELETE FROM BOARDS WHERE BOARD_IDX = #{boardIdx} 
+	</delete>
+	
+	<!-- 개인 리스트 -->
+	<select id="admingetList" parameterType="int" resultType="board">
+		SELECT B.*, M.NICKNAME, C.CATE_NAME
+		FROM BOARDS B
+		JOIN MEMBERS M
+		ON B.MEMBER_IDX = M.MEMBER_IDX
+		JOIN CATEGORYS C
+		ON B.CATE_IDX = C.CATE_IDX
+		WHERE B.MEMBER_IDX = #{memberIdx}
+		ORDER BY B.BOARD_IDX DESC
+	</select>
+	
+	<!-- 게시판 페이징처리 -->
+	<select id="adminBoardPaging" parameterType="java.util.HashMap" resultType="board">
+	    <![CDATA[
+	    	SELECT F.*
+			FROM (
+    			SELECT A.*, ROWNUM AS CNUM
+    			FROM (
+        			SELECT B.*, M.NICKNAME, C.CATE_NAME
+        			FROM BOARDS B
+        			JOIN MEMBERS M ON B.MEMBER_IDX = M.MEMBER_IDX
+					JOIN CATEGORYS C ON B.CATE_IDX = C.CATE_IDX
+					WHERE NOT B.CATE_IDX = '100' 
+					ORDER BY BOARD_IDX DESC
+        		) A
+			) F	
+			WHERE F.CNUM > #{start} AND F.CNUM <= (#{start} + #{limit})
+	    ]]>
+	</select>
+	
+	<!-- 공지사항 페이징처리 -->
+	<select id="adminNoticePaging" parameterType="java.util.HashMap" resultType="board">
+	    <![CDATA[
+	    	SELECT F.*
+			FROM (
+    			SELECT A.*, ROWNUM AS CNUM
+    			FROM (
+        			SELECT B.*, M.NICKNAME
+        			FROM BOARDS B
+        			JOIN MEMBERS M ON B.MEMBER_IDX = M.MEMBER_IDX
+					WHERE B.CATE_IDX = '100' 
+					ORDER BY BOARD_IDX DESC
+        		) A
+			) F	
+			WHERE F.CNUM > #{start} AND F.CNUM <= (#{start} + #{limit})
+	    ]]>
+	</select>
+	
+	<!-- 전체 게시글 개수 구하기-->
+	<select id = "adminBoardCount" resultType="Integer">
+		SELECT COUNT(BOARD_IDX) FROM BOARDS B
+		JOIN MEMBERS M ON B.MEMBER_IDX = M.MEMBER_IDX
+		WHERE NOT B.CATE_IDX = '100' 
+	</select>
+	
+	<!-- 공지사항 개수 구하기-->
+	<select id = "adminNoticeCount" resultType="Integer">
+		SELECT COUNT(BOARD_IDX) FROM BOARDS B
+		JOIN MEMBERS M ON B.MEMBER_IDX = M.MEMBER_IDX
+		WHERE B.CATE_IDX = '100' 
+	</select>
+<!-- 예림 끝 -->
+
+</mapper>
+
+
+
+
+
+
+

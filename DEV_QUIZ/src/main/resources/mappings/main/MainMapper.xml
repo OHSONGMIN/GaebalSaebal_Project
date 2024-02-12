@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main">
+
+	<!-- select 태그 3개 속성 id, resultType, parameterType
+	id : 사용할 명칭(필수항목), 현재 매퍼파일에서 유일한 이름 사용
+	resultType : 조회 결과값 저장하기 위한 데이터 타입(1개 데이터에 대한 타입지정)
+	parameterType : 전달 받은 파라미터 데이터의 타입 지정(선택적)
+	-->
+	
+<!-- [이하영] CATEGORYS 테이블 데이터 추가를 위한 쿼리문 -->
+	
+	<!-- 1. CATEGORYS 테이블에 데이터 추가 쿼리 -->
+	<insert id="adminInsertCate" parameterType="java.util.Map">
+	  <choose>
+	    <when test="cateType == 'board'">
+			INSERT INTO CATEGORYS (CATE_IDX, CATE_NAME)
+			VALUES (CATE_BOARD_SEQ.NEXTVAL, #{cateName})
+	    </when>
+	    <when test="cateType =='game'">
+            INSERT INTO CATEGORYS (CATE_IDX, CATE_NAME)
+			VALUES (CATE_GAME_SEQ.NEXTVAL, #{cateName})
+	    </when>
+	    <when test="cateType == 'pointStatus'">
+			INSERT INTO CATEGORYS (CATE_IDX, CATE_NAME)
+			VALUES (CATE_POINT_SEQ.NEXTVAL, #{cateName})
+	    </when>
+	    <when test='cateType == "prods"'>
+			INSERT INTO CATEGORYS (CATE_IDX, CATE_NAME)
+			VALUES (CATE_PRODS_SEQ.NEXTVAL, #{cateName})
+	    </when>
+	    <when test='cateType == "question"'>
+			INSERT INTO CATEGORYS (CATE_IDX, CATE_NAME)
+			VALUES (CATE_Q_SEQ.NEXTVAL, #{cateName})
+	    </when>
+	  </choose>
+	</insert>
+	<!-- 1. CATEGORYS 테이블에 데이터 추가 쿼리 끝 -->
+	
+	<!-- 2. 카테고리 데이터 조회를 위한 쿼리 -->
+	<select id="adminGetCateAll" parameterType="string" resultType="cate">
+		SELECT * FROM CATEGORYS ORDER BY CATE_IDX
+	</select>
+	<!-- 2. 카테고리 데이터 조회를 위한 쿼리 끝-->
+	
+	<!-- 3. 게임 카테고리 데이터 조회를 위한 쿼리 -->
+	<select id="gaebalGetGameCate" parameterType="string" resultType="cate">
+		SELECT * FROM CATEGORYS WHERE CATE_IDX BETWEEN 200 AND 299
+	</select>
+	<!-- 3. 카테고리 데이터 조회를 위한 쿼리 끝-->
+	
+	<!-- 4. 게임 카테고리 데이터 조회를 위한 쿼리 -->
+	<select id="gaebalGetQuestionCate" parameterType="string" resultType="cate">
+		SELECT * FROM CATEGORYS WHERE CATE_IDX BETWEEN 400 AND 499
+	</select>
+	<!-- 4. 카테고리 데이터 조회를 위한 쿼리 끝-->
+
+	<!-- 5. -->
+	<select id="getMemPoint" parameterType="member" resultType="member">
+	    SELECT * FROM MEMBERS WHERE MEMBER_IDX = #{memberIdx}
+	</select>
+	<!-- 5. -->
+	
+	<!-- [이하영] POINTS 테이블 데이터 추가를 위한 쿼리문 -->
+	
+	<!-- 6. SCORE 테이블에 데이터 추가 쿼리 (트리거가 작동하기 때문에 결국엔 POINTS 테이블에 추가됨) -->
+	<insert id="gaebalInsertPoint" parameterType="score">
+		INSERT INTO SCORE (MEMBER_IDX, SCORE, POINT)
+        VALUES ( #{memberIdx}, #{score}, #{point} )
+	</insert>
+	<!-- 6. (끝) SCORE 테이블에 데이터 추가 쿼리 (트리거가 작동하기 때문에 결국엔 POINTS 테이블에 추가됨) (끝) -->
+	
+	<!--  효정 -->
+	<!-- 5. 상품 카테고리 데이터 조회를 위한 쿼리 -->
+	<select id="gaebalGetProductCate" parameterType="string" resultType="cate">
+		SELECT * FROM CATEGORYS WHERE CATE_IDX BETWEEN 300 AND 399
+	</select>
+	<!-- 5. 카테고리 데이터 조회를 위한 쿼리 끝-->
+	
+	<!-- 메인페이지에 공지사항만 불러오기 -->
+	<select id="getNotice" resultType="board">
+		SELECT * 
+		FROM BOARDS
+		WHERE CATE_IDX = 100
+			
+	</select>
+
+</mapper>

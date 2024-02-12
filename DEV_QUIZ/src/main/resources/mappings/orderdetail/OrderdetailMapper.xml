@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderdetailDAO">
+	<!-- 예림 시작 -->
+	<!-- 회원별 주문 내역 상세 -->
+	<select id="adminorderList" parameterType="orderdetail"
+		resultType="orderdetail">
+		SELECT D.*, O.SUM_PRICE, O.ORDER_DATE, P.PRODUCT_NAME
+		FROM
+		PRODUCTS P
+		JOIN ORDERS_DETAILS D
+		ON P.PRODUCT_IDX = D.PRODUCT_IDX
+		JOIN
+		ORDERS O
+		ON D.ORDER_IDX = O.ORDER_IDX
+		WHERE D.MEMBER_IDX = #{memberIdx}
+		ORDER BY D.ORDER_IDX
+	</select>
+
+	<!-- 회원별 주문 건수(order_idx 수) -->
+	<select id="adminorderCnt" parameterType="orderdetail"
+		resultType="int">
+		SELECT COUNT(ORDER_IDX)
+		FROM ORDERS
+		WHERE MEMBER_IDX =
+		#{memberIdx}
+	</select>
+
+	<!-- 주문별 상품 건수(orderdetail 내 order_idx 수) -->
+	<select id="adminorderDetailCnt" parameterType="orderdetail"
+		resultType="int">
+		SELECT COUNT(ORDER_IDX)
+		FROM ORDERS_DETAILS
+		WHERE ORDER_IDX =
+		#{orderIdx}
+	</select>
+	<!-- 예림 끝 -->
+	<!-- 결제 내역 조회 -->
+
+
+	<!-- 민주 시작 -->
+	<!-- 결제 -->
+	<insert id="insertOrderDetail" parameterType="orderdetail">
+		INSERT INTO
+		ORDERS_DETAILS (ORDER_DETAIL_IDX, ORDER_IDX, PRODUCT_IDX, MEMBER_IDX,
+		ORDER_DETAIL_DEL)
+		VALUES (OR_DE_SEQ.NEXTVAL, #{orderIdx},
+		#{productIdx}, #{memberIdx}, 0)
+	</insert>
+
+	<!-- 결제 내역 조회 -->
+	<select id="selectOrderDetail" parameterType="orderdetail"
+		resultType="orderdetail">
+		SELECT O.ORDER_IDX, O.ORDER_DATE, P.PRODUCT_FILE,
+		P.PRODUCT_NAME, P.PRODUCT_PRICE, D.PRODUCT_IDX
+		FROM ORDERS O, ORDERS_DETAILS D,
+		PRODUCTS P
+		WHERE O.ORDER_IDX = D.ORDER_IDX
+		AND P.PRODUCT_IDX =
+		D.PRODUCT_IDX
+		AND D.MEMBER_IDX = #{memberIdx}
+		AND O.ORDER_IDX =
+		#{orderIdx}
+		ORDER BY O.ORDER_DATE
+	</select>
+
+	<!-- 주문 취소 -->
+	<update id="updateOrderDetail" parameterType="orderdetail">
+		UPDATE
+		ORDERS_DETAILS
+		SET ORDER_DETAIL_DEL = 1
+		WHERE MEMBER_IDX = #{memberIdx}
+		AND ORDER_IDX = #{orderIdx}
+	</update>
+
+	<!-- 주문 취소를 위해 productIdx 얻기 -->
+	<select id="selectProducIdx" parameterType="orderdetail"
+		resultType="orderdetail">
+		SELECT PRODUCT_IDX
+		FROM ORDERS_DETAILS
+		WHERE ORDER_IDX =
+		#{orderIdx}
+		AND MEMBER_IDX = #{memberIdx}
+	</select>
+	<!-- 민주 끝 -->
+
+
+
+</mapper>
+
+
+
+
+
+
+
