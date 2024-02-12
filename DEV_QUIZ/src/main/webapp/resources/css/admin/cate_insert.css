@@ -1,0 +1,25 @@
+.commonBody { /* 전체 페이지 이거 쓰면 되겠답 */
+    height: auto; /* 또는 원하는 높이 */
+   	margin: 0 auto;
+    position: relative; /* 상대 위치 설정 */
+	width: 40%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 50px;
+}
+.commBody button:hover {
+	background-color: #4a5558;
+}
+#cateInsertBtn:hover {
+	background-color: #98c1d9;
+	border: #98c1d9;
+}
+.cateBody { /* 전체 페이지 이거 쓰면 되겠답 */
+    height: auto; /* 또는 원하는 높이 */
+   	margin: 0 auto;
+    position: relative; /* 상대 위치 설정 */
+	width: 40%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 50px;
+}

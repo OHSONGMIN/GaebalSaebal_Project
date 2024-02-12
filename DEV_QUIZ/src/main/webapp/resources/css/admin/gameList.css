@@ -1,0 +1,30 @@
+.commonBody { /* 전체 페이지 이거 쓰면 되겠답 */
+    height: auto; /* 또는 원하는 높이 */
+   	margin: 0 auto;
+    position: relative; /* 상대 위치 설정 */
+	width: 40%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 20px;
+/* 	border: 1px red solid; */
+}
+.commBody button:hover {
+	background-color: #4a5558;
+}
+#gameInsertTable th {
+	font-size: 16px;
+	width: 20%;
+	text-align: center;
+}
+.gameManage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+textarea {
+    width: 100%; /* 텍스트 영역이 부모 요소에 꽉 차도록 너비 설정 */
+    padding: 10px; /* 내부 여백 설정 */
+    box-sizing: border-box; /* 내부 여백과 테두리를 포함한 전체 너비 설정 */
+    margin-bottom: 10px; /* 하단 여백 설정 */
+}

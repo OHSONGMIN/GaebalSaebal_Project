@@ -1,0 +1,15 @@
+.commBody { /* 전체 페이지 이거 쓰면 되겠답 */
+    height: auto; /* 또는 원하는 높이 */
+   	margin: 0 auto;
+    /* background: #DDA0DD; */ /* .gameBody의 배경색 */
+    position: relative; /* 상대 위치 설정 */
+    
+	/* border: 1px solid red; */
+	width: 60%;
+	margin: 0 auto;
+	
+	text-align: center;
+}
+.commBody button:hover {
+	background-color: #4a5558;
+}

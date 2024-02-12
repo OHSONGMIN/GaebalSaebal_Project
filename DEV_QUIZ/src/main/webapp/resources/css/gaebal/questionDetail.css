@@ -1,0 +1,35 @@
+.commonBody { /* 전체 페이지 이거 쓰면 되겠답 */
+	height: auto; /* 또는 원하는 높이 */
+	margin: 0 auto;
+	position: relative; /* 상대 위치 설정 */
+/* 	border: 1px solid blue; */
+	width: 60%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 50px;
+}
+#title {
+	font-size: 20px;
+}
+.questionContent {
+	height: 200px; /* 원하는 높이로 조정합니다. */
+	text-align: left;
+}
+.questionInfo {
+	font-size: 13px;
+}
+#nickname {
+	font-size: 15px;
+	text-align: left;
+}
+#ori_Date {
+	text-align: right;
+}
+table #upBtn:hover{
+	background-color: #98c1d9;
+	border: 1px solid #98c1d9;
+}
+table #delBtn:hover{
+	background-color: #ee6c4d;
+	border: 1px solid #ee6c4d;
+}
