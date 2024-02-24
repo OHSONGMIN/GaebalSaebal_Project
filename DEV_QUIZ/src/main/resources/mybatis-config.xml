@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.devquiz.biz.model.GameVO" alias="game"/>
+		<typeAlias type="com.devquiz.biz.model.CategoryVO" alias="cate"/>
+		<typeAlias type="com.devquiz.biz.model.BoardVO" alias="board"/>
+		<typeAlias type="com.devquiz.biz.model.MemberVO" alias="member"/>
+		<typeAlias type="com.devquiz.biz.model.ProductVO" alias="product"/>
+		<typeAlias type="com.devquiz.biz.model.PointVO" alias="point"/>
+		<typeAlias type="com.devquiz.biz.model.OrderDetailVO" alias="orderdetail"/>
+		<typeAlias type="com.devquiz.biz.model.QuestionVO" alias="question"/>
+		<typeAlias type="com.devquiz.biz.model.AnswerVO" alias="answer"/>
+		<typeAlias type="com.devquiz.biz.model.LikeVO" alias="likeVO"/>
+		<typeAlias type="com.devquiz.biz.model.CartVO" alias="cartVO"/>
+		<typeAlias type="com.devquiz.biz.model.MyProductVO" alias="myProductVO"/>
+		<typeAlias type="com.devquiz.biz.model.OrderVO" alias="orderVO"/>
+		<typeAlias type="com.devquiz.biz.model.CommunityVO" alias="community"/>
+		<typeAlias type="com.devquiz.biz.model.CommentVO" alias="comment"/>
+		<typeAlias type="com.devquiz.biz.model.CommunityPageVO" alias="CommunityPage"/>
+		<typeAlias type="com.devquiz.biz.model.BookmarkVO" alias="Bookmark"/>
+		<typeAlias type="com.devquiz.biz.model.ScoreVO" alias="score"/>
+	</typeAliases>
+
+   
+</configuration>
