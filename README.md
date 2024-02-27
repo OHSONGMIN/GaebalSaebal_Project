@@ -32,82 +32,71 @@
 
 ## 📋 프로젝트 구조
 ```
-DEV_QUIZ
-  ├─.settings
-  ├─spring
-  │  └─DEV_QUIZ
-  │      └─target
-  │          └─m2e-wtp
-  │              └─web-resources
-  │                  └─META-INF
-  │                      └─maven
-  │                          └─com.depquiz
-  │                              └─devquiz
-  └─src
-     ├─main
-     │  ├─java
-     │  │  └─com
-     │  │      └─devquiz
-     │  │          └─biz
-     │  │              ├─controller
-     │  │              ├─dao
-     │  │              ├─model
-     │  │              ├─service
-     │  │              └─serviceimpl
-     │  ├─resources
-     │  │  ├─mappings
-     │  │  │  ├─answer
-     │  │  │  ├─board
-     │  │  │  ├─bookmark
-     │  │  │  ├─cart
-     │  │  │  ├─community
-     │  │  │  ├─game
-     │  │  │  ├─like
-     │  │  │  ├─main
-     │  │  │  ├─member
-     │  │  │  ├─myProduct
-     │  │  │  ├─order
-     │  │  │  ├─orderdetail
-     │  │  │  ├─point
-     │  │  │  ├─product
-     │  │  │  └─question
-     │  │  └─META-INF
-     │  └─webapp
-     │      ├─resources
-     │      │  ├─css
-     │      │  │  ├─admin
-     │      │  │  └─gaebal
-     │      │  ├─images
-     │      │  ├─js
-     │      │  └─upload
-     │      └─WEB-INF
-     │          ├─config
-     │          └─jsp
-     │              ├─admin
-     │              │  ├─board
-     │              │  ├─game
-     │              │  ├─main
-     │              │  ├─member
-     │              │  ├─product
-     │              │  └─question
-     │              ├─common
-     │              ├─gaebal
-     │              │  ├─cart
-     │              │  ├─community
-     │              │  ├─game
-     │              │  ├─like
-     │              │  ├─member
-     │              │  ├─myPage
-     │              │  ├─order
-     │              │  ├─product
-     │              │  └─question
-     │              └─include
-     └─test
-         ├─java
-         │  └─com
-         │      └─pj
-         │          └─devquiz
-         └─resources
+src
+ ├─main
+ │  ├─java
+ │  │  └─com
+ │  │      └─devquiz
+ │  │          └─biz
+ │  │              ├─controller
+ │  │              ├─dao
+ │  │              ├─model
+ │  │              ├─service
+ │  │              └─serviceimpl
+ │  ├─resources
+ │  │  ├─mappings
+ │  │  │  ├─answer
+ │  │  │  ├─board
+ │  │  │  ├─bookmark
+ │  │  │  ├─cart
+ │  │  │  ├─community
+ │  │  │  ├─game
+ │  │  │  ├─like
+ │  │  │  ├─main
+ │  │  │  ├─member
+ │  │  │  ├─myProduct
+ │  │  │  ├─order
+ │  │  │  ├─orderdetail
+ │  │  │  ├─point
+ │  │  │  ├─product
+ │  │  │  └─question
+ │  │  └─META-INF
+ │  └─webapp
+ │      ├─resources
+ │      │  ├─css
+ │      │  │  ├─admin
+ │      │  │  └─gaebal
+ │      │  ├─images
+ │      │  ├─js
+ │      │  └─upload
+ │      └─WEB-INF
+ │          ├─config
+ │          └─jsp
+ │              ├─admin
+ │              │  ├─board
+ │              │  ├─game
+ │              │  ├─main
+ │              │  ├─member
+ │              │  ├─product
+ │              │  └─question
+ │              ├─common
+ │              ├─gaebal
+ │              │  ├─cart
+ │              │  ├─community
+ │              │  ├─game
+ │              │  ├─like
+ │              │  ├─member
+ │              │  ├─myPage
+ │              │  ├─order
+ │              │  ├─product
+ │              │  └─question
+ │              └─include
+ └─test
+     ├─java
+     │  └─com
+     │      └─pj
+     │          └─devquiz
+     └─resources
 ```
 
 ## 📌 주요 기능
