@@ -32,71 +32,65 @@
 
 ## 📋 프로젝트 구조
 ```
-src
- ├─main
- │  ├─java
- │  │  └─com
- │  │      └─devquiz
- │  │          └─biz
- │  │              ├─controller
- │  │              ├─dao
- │  │              ├─model
- │  │              ├─service
- │  │              └─serviceimpl
- │  ├─resources
- │  │  ├─mappings
- │  │  │  ├─answer
- │  │  │  ├─board
- │  │  │  ├─bookmark
- │  │  │  ├─cart
- │  │  │  ├─community
- │  │  │  ├─game
- │  │  │  ├─like
- │  │  │  ├─main
- │  │  │  ├─member
- │  │  │  ├─myProduct
- │  │  │  ├─order
- │  │  │  ├─orderdetail
- │  │  │  ├─point
- │  │  │  ├─product
- │  │  │  └─question
- │  │  └─META-INF
- │  └─webapp
- │      ├─resources
- │      │  ├─css
- │      │  │  ├─admin
- │      │  │  └─gaebal
- │      │  ├─images
- │      │  ├─js
- │      │  └─upload
- │      └─WEB-INF
- │          ├─config
- │          └─jsp
- │              ├─admin
- │              │  ├─board
- │              │  ├─game
- │              │  ├─main
- │              │  ├─member
- │              │  ├─product
- │              │  └─question
- │              ├─common
- │              ├─gaebal
- │              │  ├─cart
- │              │  ├─community
- │              │  ├─game
- │              │  ├─like
- │              │  ├─member
- │              │  ├─myPage
- │              │  ├─order
- │              │  ├─product
- │              │  └─question
- │              └─include
- └─test
-     ├─java
-     │  └─com
-     │      └─pj
-     │          └─devquiz
-     └─resources
+ main
+  ├─java
+  │  └─com
+  │      └─devquiz
+  │          └─biz
+  │              ├─controller
+  │              ├─dao
+  │              ├─model
+  │              ├─service
+  │              └─serviceimpl
+  ├─resources
+  │  ├─mappings
+  │  │  ├─answer
+  │  │  ├─board
+  │  │  ├─bookmark
+  │  │  ├─cart
+  │  │  ├─community
+  │  │  ├─game
+  │  │  ├─like
+  │  │  ├─main
+  │  │  ├─member
+  │  │  ├─myProduct
+  │  │  ├─order
+  │  │  ├─orderdetail
+  │  │  ├─point
+  │  │  ├─product
+  │  │  └─question
+  │  └─META-INF
+  └─webapp
+      ├─resources
+      │  ├─css
+      │  │  ├─admin
+      │  │  └─gaebal
+      │  ├─images
+      │  ├─js
+      │  └─upload
+      └─WEB-INF
+          ├─config
+          └─jsp
+              ├─admin
+              │  ├─board
+              │  ├─game
+              │  ├─main
+              │  ├─member
+              │  ├─product
+              │  └─question
+              ├─common
+              ├─gaebal
+              │  ├─cart
+              │  ├─community
+              │  ├─game
+              │  ├─like
+              │  ├─member
+              │  ├─myPage
+              │  ├─order
+              │  ├─product
+              │  └─question
+              └─include
+
 ```
 
 ## 📌 주요 기능
