@@ -11,6 +11,7 @@
 
 
 ## ⚙️ 개발 환경
+
 - 언어 / 서버 : Java8, JavaScript, JSP, HTML, css, Tomcat
 - 프레임워크 / 라이브러리 : Spring, MyBatis, JQuery, JSTL, Bootstrap
 - 데이터베이스 : Oracle Database
@@ -31,6 +32,7 @@
 
 
 ## 📋 프로젝트 구조
+
 ```
  main
   ├─java
@@ -97,4 +99,4 @@
 
 
 
-스킬불... 가상 아이
+스킬북... 가상 아이템
