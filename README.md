@@ -30,7 +30,7 @@
 
 ## 🔍 ERD
 
-<img width="1013" alt="스크린샷 2024-03-07 134244" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/6cd43905-1754-4f39-947f-e19dd973785f">
+[<img width="1013" alt="스크린샷 2024-03-07 134244" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/6cd43905-1754-4f39-947f-e19dd973785f">](https://github.com/OHSONGMIN/GaebalSaebal_Project/issues/1#issue-2176333456)
 
 
 ## 📋 프로젝트 구조
