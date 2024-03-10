@@ -12,7 +12,7 @@
 
 ## ⚙️ 개발 환경
 
-- 언어 / 서버 : Java8, JavaScript, JSP, HTML, css, Tomcat
+- 언어 / 서버 : Java8, JavaScript, JSP, HTML, css, Apache Tomcat
 - 프레임워크 / 라이브러리 : Spring, MyBatis, JQuery, JSTL, Bootstrap
 - 데이터베이스 : Oracle Database
 - 도구 : STS3, Eclipse, SQL Developer
