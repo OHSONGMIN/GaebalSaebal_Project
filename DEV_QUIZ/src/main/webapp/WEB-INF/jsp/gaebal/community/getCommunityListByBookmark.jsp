@@ -125,6 +125,7 @@
       	background-color: #F5F5F5;
       	width: 250px;
       	text-align: center;
+      	height: 1130px;
     }
 	
 </style>

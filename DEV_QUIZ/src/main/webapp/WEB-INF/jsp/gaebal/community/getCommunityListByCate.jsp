@@ -27,9 +27,10 @@
 	
 	.left-community { 
  		width: 180px;
-		/*float: left;
-		position: relative;	 */
+		/* float: left; */
 		margin: 0px 10px 20px 10px;
+		/* margin : 40px; */
+		/* background-color: #F5F5F5; */
 	}
 	
 	.right-community { 
@@ -125,11 +126,19 @@
 	}
 	
 	.sidenav {
-      	background-color: #F5F5F5;
-      	width: 250px;
-      	text-align: center;
+		background-color: #F5F5F5;
+	    width: 250px;
+	    text-align: center;
+	    height: 1130px;
     }
-
+	/* .sidenav {
+	    background-color: #F5F5F5;
+	    background-color: #3D5A80;
+	    width: 220px;
+	    text-align: left;
+	    margin: 0px 0px 0px 110px;
+    */
+	
 	
 
 </style>
@@ -242,8 +251,10 @@
 <body>
 <div id="container">
 	<nav class="col-2 sidenav" style="float: left;">
-		<div class="left-community">
+	<!-- <nav class="list-group list-group-flush" style="float: left;"> -->
+	<div class="left-community">
 			<br>
+			<!-- <ul class="list-group list-group-flush"> -->
 			<c:if test="${loginMember != null}">
 				<a href="get_community_list_by_bookmark?memberIdx=${loginMember.memberIdx }" class="list-group-item list-group-item-action">즐겨찾기</a>
 			</c:if>
@@ -255,6 +266,7 @@
 					<a href="get_community_list_by_cate?cateIdx=${cate.cateIdx }" class="list-group-item list-group-item-action">${cate.cateName }</a>
 				</c:if>
 			</c:forEach>
+			<!-- </ul> -->
 			<br>
 		</div>
 	</nav>
