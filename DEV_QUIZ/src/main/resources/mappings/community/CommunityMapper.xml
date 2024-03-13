@@ -103,6 +103,7 @@
 			SELECT *
 			FROM CATEGORYS
 			WHERE CATE_IDX > 100 AND CATE_IDX < 200
+			ORDER BY CATE_IDX
 		]]>
 	</select>
 	
