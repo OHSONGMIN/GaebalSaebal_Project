@@ -110,7 +110,7 @@
 
 
 
-|키워드 검색("스터디"로 제목 검색)|즐겨찾기 게시글만 조회|
+|키워드로 조회 ("스터디"로 제목 검색)|즐겨찾기 게시글만 조회|
 |---|---|
 |<img width="500" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/835e5f8b-94c2-4c83-9083-14c6408feee8">|<img width="500" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/0a234483-1fd1-472f-85dc-9c3fed042e21">|
 
@@ -120,9 +120,9 @@
 |<img width="500" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/8e49bd41-3a31-4b88-aba9-4b101184e0a6">|<img width="500" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/93fb1d6d-2ca1-428c-992a-329411b554a4">|
 
 
-|퀴즈 게임|
-|---|
-|<img wirdh="500" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/961c3d09-7063-4e6c-ac3d-b42912143988">|
+|퀴즈 게임||
+|---|---|
+|<img wirdh="500" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/961c3d09-7063-4e6c-ac3d-b42912143988">|---|
 
 
 스킬북... 가상 아이템
