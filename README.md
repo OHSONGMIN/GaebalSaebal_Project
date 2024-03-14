@@ -98,8 +98,9 @@
 ```
 
 ## 📌 주요 기능
-|---|---|
-|<img src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/36c0fb60-8ec8-493b-b1b7-a7b67ad0d753">|---|
+|---|---|---|
+|<img width="400" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/36c0fb60-8ec8-493b-b1b7-a7b67ad0d753">|---|---|
+
 
 
 스킬북... 가상 아이템
