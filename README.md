@@ -122,7 +122,7 @@
 
 |퀴즈 게임|문의 관리|
 |---|---|
-|<img wirdh="500" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/961c3d09-7063-4e6c-ac3d-b42912143988">|<img width="500" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/1928d55e-0bff-48ef-b593-55ab2921f6fe">|
+|<img width="500" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/961c3d09-7063-4e6c-ac3d-b42912143988">|<img width="500" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/1928d55e-0bff-48ef-b593-55ab2921f6fe">|
 
 
 스킬북... 가상 아이템
