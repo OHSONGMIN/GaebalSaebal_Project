@@ -98,9 +98,10 @@
 ```
 
 ## 📌 주요 기능
-|메인 페이지|커뮤니티 게시글|
-|---|---|
-|<img width="400" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/36c0fb60-8ec8-493b-b1b7-a7b67ad0d753">|---|
+
+# 메인 페이지
+최근 일주일 내 가장 조회수가 높은 게시글/ 공지사항/ IT 관련 뉴스를 확인할 수 있습니다.
+<img width="500" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/36c0fb60-8ec8-493b-b1b7-a7b67ad0d753">
 
 
 
