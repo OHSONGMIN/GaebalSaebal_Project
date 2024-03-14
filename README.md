@@ -99,9 +99,43 @@
 
 ## 📌 주요 기능
 
-# 메인 페이지
+### 메인 페이지
 최근 일주일 내 가장 조회수가 높은 게시글/ 공지사항/ IT 관련 뉴스를 확인할 수 있습니다.
-<img width="500" src="https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/36c0fb60-8ec8-493b-b1b7-a7b67ad0d753">
+![메인2](https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/36c0fb60-8ec8-493b-b1b7-a7b67ad0d753)
+
+
+### 개발새발 커뮤니티
+개발새발 커뮤니티에서 각종 정보와 일상을 함께 나눌 수 있습니다.
+![커뮤니티4](https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/04096cbe-9c8f-4afb-aa22-a1aeb6f3ed33)
+
+
+### 게시글 작성 & 상세
+![글 작성2](https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/ac8ce5ed-0a2e-47f3-b7b3-f7f992d6589e) ![글 상세2](https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/66d66f4b-8fcc-403f-b05c-78e20f33fcc0)
+
+
+### 댓글 조회 & 댓글 수정
+![댓글2](https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/b8191c6e-cae8-43b3-a97e-146814f2d3a5) & ![댓글 수정2](https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/c8a3e837-09e7-455b-be5d-f77737645478)
+
+
+### 키워드 검색
+제목 혹은 내용 기준으로 키워드가 포함된 게시글을 조회할 수 있습니다.
+![키워드 검색2](https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/835e5f8b-94c2-4c83-9083-14c6408feee8)
+
+
+### 즐겨찾기 게시글만 조회
+![즐겨찾기2](https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/0a234483-1fd1-472f-85dc-9c3fed042e21)
+
+
+### 상품 조회
+![상품2](https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/8e49bd41-3a31-4b88-aba9-4b101184e0a6)
+
+
+### 상품 주문
+![주문2](https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/93fb1d6d-2ca1-428c-992a-329411b554a4)
+
+
+### 퀴즈 게임 
+![게임2](https://github.com/OHSONGMIN/GaebalSaebal_Project/assets/143185293/961c3d09-7063-4e6c-ac3d-b42912143988)
 
 
 
