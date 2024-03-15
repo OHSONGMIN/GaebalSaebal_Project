@@ -52,11 +52,11 @@
   	
     .communityUploadImg img {
         max-width: 100%; 
-        max-height: 300px; 
-        width: auto; 
+        max-height: 600px; 
+        width: auto;
         height: auto; 
     	display: block;
-    	margin: 0 auto;
+    	margin: 0 auto 0 0;
     }
     
     .highlight {
