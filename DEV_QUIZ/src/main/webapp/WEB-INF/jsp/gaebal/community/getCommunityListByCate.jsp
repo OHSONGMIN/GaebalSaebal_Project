@@ -16,7 +16,11 @@
 <title>커뮤니티 카테고리별 게시글 목록 : 오송민</title>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <style>
-	#container { margin: auto; }
+	#container { 
+		margin: auto; 
+    	justify-content: space-between;
+    }
+    
 	h1, h3, p { text-align: center; }
 	
 	table { width: 1000px; border-collapse: collapse; }
@@ -24,7 +28,7 @@
 	.center { text-align: center; }
 	
 	.border-none, .border-none td { border: none; }
-	
+	    
 	.left-community { 
  		width: 180px;
 		/* float: left; */
@@ -35,10 +39,25 @@
 	
 	.right-community { 
 		width: 1000px;
-		float: center;
-		position: relative;	
+		/* float: center;
+		position: relative;	 */
 		margin: 0 auto;
+		
 	}
+	
+	
+	.rightmost-community {
+	    position: fixed;
+	    top: 320px; /* 원하는 위치의 상대적인 값 설정 */
+	    right: 80px; /* 원하는 위치의 상대적인 값 설정 */
+	    z-index: 999; /* 다른 요소들보다 위에 위치하도록 설정 */
+	}
+
+/* 	.rightmost-community {
+		width: 180px;
+	    display: flex;
+	    justify-content: flex-end; 
+	} */
 
 	table td {
 	  	padding: 8px;
@@ -139,7 +158,10 @@
 	    margin: 0px 0px 0px 110px;
     */
 	
-	
+	.rightmost-community img {
+	    width: 100%; 
+	    height: auto;
+	}
 
 </style>
 </head>
@@ -324,7 +346,6 @@
 				</c:if>
 		  	</tbody>
 		</table>
-		
 		<br><hr id="boldBlue">
 		
 		<div>
@@ -406,6 +427,10 @@
 			    </c:choose>
 		  	</ul>
 		</nav>
+	</div>
+	
+	<div class="rightmost-community" style="float: right;">
+		<a href="https://kr.hotels.com/"><img src="resources/images/ad.png"></a>
 	</div>	
 </div>
 <br><br><br><br><br><br><br><br><br><br><br><br>

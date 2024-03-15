@@ -127,6 +127,13 @@
       	text-align: center;
       	height: 1130px;
     }
+    
+    .rightmost-community {
+	    position: fixed;
+	    top: 320px; /* 원하는 위치의 상대적인 값 설정 */
+	    right: 80px; /* 원하는 위치의 상대적인 값 설정 */
+	    z-index: 999; /* 다른 요소들보다 위에 위치하도록 설정 */
+	}
 	
 </style>
 </head>
@@ -273,6 +280,10 @@
 			    </c:choose>
 		  	</ul>
 		</nav>
+	</div>	
+	
+	<div class="rightmost-community" style="float: right;">
+		<a href="https://kr.hotels.com/"><img src="resources/images/ad.png"></a>
 	</div>	
 </div>
 <br><br><br><br><br><br><br><br><br><br><br><br>
