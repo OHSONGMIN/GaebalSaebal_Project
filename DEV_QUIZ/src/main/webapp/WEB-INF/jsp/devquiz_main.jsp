@@ -149,7 +149,7 @@ td{
 			<span class="badge badge-custom">공지사항</span> <span class="badgeMsg"><a
 				href="get_community_list_by_cate?cateIdx=100">더보기..</a></span>
 			<!-- 공지사항 게시판 연결하기  -->
-			<span class="badge badge-custom" style="margin-left: 370px;">NEWS!</span>
+			<span class="badge badge-custom" style="margin-left: 380px;">NEWS!</span>
 			<span class="badgeMsg">IT 관련 뉴스를 확인해보세요~!</span>
 		</div>
 		
